@@ -14,12 +14,33 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "profilemembers")
 public class ProfileMember {
+
+
+    @Id
     private Long id;
+
+    @ManyToOne()
+    @JoinColumn(name="profiles_id")
     private Profile profile;
+
+    @ManyToOne()
+    @JoinColumn(name="users_id")
     private  User user;
+
+    @ManyToOne()
+    @JoinColumn(name="groupes_id")
     private  Group group;
+
+    @ManyToOne()
+    @JoinColumn(name="roles_id")
     private Role role;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
     private Date lastUpdate;
 
 
@@ -27,13 +48,11 @@ public class ProfileMember {
         this.id = id;
     }
 
-    @Id
+
     public Long getId() {
         return id;
     }
-    @ManyToMany
-    @JoinColumn(name = "profiles_id", nullable = false)
-    Set<Profile> profiles;
+
 
     public Profile getProfile() {
         return profile;
@@ -43,7 +62,7 @@ public class ProfileMember {
         this.profile = profile;
     }
 
-    @Column(name = "userid", nullable = false)
+
     public User getUser() {
         return user;
     }
@@ -52,7 +71,7 @@ public class ProfileMember {
         this.user = user;
     }
 
-    @Column(name = "groupid", nullable = false)
+
     public Group getGroup() {
         return group;
     }
@@ -61,7 +80,7 @@ public class ProfileMember {
         this.group = group;
     }
 
-    @Column(name = "roleid", nullable = false)
+
     public Role getRole() {
         return role;
     }
@@ -70,8 +89,7 @@ public class ProfileMember {
         this.role = role;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -80,8 +98,7 @@ public class ProfileMember {
         this.creationDate = creationDate;
     }
 
-    @LastModifiedDate
-    @Column(name = "updated_at")
+
     public Date getLastUpdate() {
         return lastUpdate;
     }
