@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "user")
 public class User {
 
-    private int id;
+    private Long id;
     private boolean enabled;
     private String username;
     private String password;
@@ -23,19 +23,18 @@ public class User {
     private String lastName;
     private String title;
     private String jobTitle;
-    private int managerUserId;
-    private int createdBy;
+    private User managerUserId;
+    private User createdBy;
     private Date creationDate;
     private Date lastUpdate;
-    private int iconId;
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -101,22 +100,23 @@ public class User {
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
-    @Column(name = "manager_user_id", nullable = false)
-    public int getManagerUserId() {
+
+    public User getManagerUserId() {
         return managerUserId;
     }
 
-    public void setManagerUserId(int managerUserId) {
+    public void setManagerUserId(User managerUserId) {
         this.managerUserId = managerUserId;
     }
-    @Column(name = "created_by", nullable = false)
-    public int getCreatedBy() {
+
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     public Date getCreationDate() {
@@ -136,12 +136,5 @@ public class User {
         this.lastUpdate = lastUpdate;
     }
 
-    @Column(name = "icon_id", nullable = false)
-    public int getIconId() {
-        return iconId;
-    }
 
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
-    }
 }

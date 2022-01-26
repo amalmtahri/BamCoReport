@@ -14,23 +14,22 @@ import java.util.Date;
 @Table(name = "group")
 public class Group {
 
-    private int id;
+    private Long id;
     private String name;
     private String parentPath;
     private String displayname;
     private String description;
-    private int createdBy;
+    private User createdBy;
     private Date creationDate;
     private Date lastUpdate;
-    private int iconId;
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -70,12 +69,11 @@ public class Group {
         this.description = description;
     }
 
-    @Column(name = "created_by", nullable = false)
-    public int getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -98,12 +96,4 @@ public class Group {
         this.lastUpdate = lastUpdate;
     }
 
-    @Column(name = "icon_id", nullable = false)
-    public int getIconId() {
-        return iconId;
-    }
-
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
-    }
 }
