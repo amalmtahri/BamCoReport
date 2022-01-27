@@ -1,9 +1,12 @@
 package com.application.bamcoreport.DTO.models;
 
 import com.application.bamcoreport.entity.User;
+import io.swagger.annotations.ApiModel;
 
 import java.util.Date;
 
+
+@ApiModel("Role")
 public class RoleDto {
 
 

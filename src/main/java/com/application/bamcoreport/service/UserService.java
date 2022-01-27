@@ -1,5 +1,7 @@
 package com.application.bamcoreport.service;
 
+import com.application.bamcoreport.DTO.models.UserDto;
+import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements  IUserService{
     @Autowired
     private UserRepository repository;
 
@@ -20,8 +22,13 @@ public class UserService {
         return repository.saveAll(users);
     }
 
-    public List<User> getUsers(){
-        return repository.findAll();
+    @Autowired
+    IMapClassWithDto<User, UserDto> userMapping;
+
+    @Override
+    public List<UserDto> getUsers() {
+        List<User> users = repository.findAll();
+        return userMapping.convertListToListDto(users,UserDto.class);
     }
 
     public User getUserById(Long id){

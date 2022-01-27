@@ -3,9 +3,10 @@ package com.application.bamcoreport.DTO.models;
 import com.application.bamcoreport.entity.User;
 
 import java.util.Date;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel("User")
 public class UserDto {
-
 
     private Long id;
     private boolean enabled;

@@ -1,13 +1,16 @@
 package com.application.bamcoreport.controller;
 
+import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/identity/user")
 public class UserController {
 
     @Autowired
@@ -24,10 +27,10 @@ public class UserController {
     }
 
     @GetMapping("/findUsers")
-    public List<User> findUsers(){
-        return service.getUsers();
+    public ResponseEntity<List<UserDto>> getAllUsers(){
+        List<UserDto> userDto = service.getUsers();
+        return ResponseEntity.ok(userDto);
     }
-
     @GetMapping("/findUser/{id}")
     public User findUser(@PathVariable  Long id){
         return service.getUserById(id);
