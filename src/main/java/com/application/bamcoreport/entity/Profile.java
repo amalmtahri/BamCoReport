@@ -117,4 +117,19 @@ public class Profile {
     public void setLastUpdateBy(User lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
+
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", isDefault=" + isDefault +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", createdBy=" + createdBy +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", lastUpdateBy=" + lastUpdateBy +
+                '}';
+    }
 }

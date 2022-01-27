@@ -106,4 +106,17 @@ public class ProfileMember {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileMember{" +
+                "id=" + id +
+                ", profile=" + profile +
+                ", user=" + user +
+                ", group=" + group +
+                ", role=" + role +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

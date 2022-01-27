@@ -1,57 +1,44 @@
 package com.application.bamcoreport.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
-
-
 
     @JsonIgnore
     @OneToOne(targetEntity = UserContactInfo.class, mappedBy = "userId")
-    private UserContactInfo userContactInfos;
+    private UserContactInfo userContactInfo;
 
-    @Column(name = "enabled", columnDefinition = "boolean default false")
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password", length = 60)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-    @Column(name = "title", length = 50)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "jobtitle")
+    @Column(name = "job_title", nullable = false)
     private String jobTitle;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -62,50 +49,38 @@ public class User implements Serializable {
     @JoinColumn(name = "createdby")
     private User createdBy;
 
-    @CreationTimestamp
-    @Column(name = "creationdate")
-    private LocalDateTime creationDate;
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date creationDate;
 
-    @UpdateTimestamp
-    @Column(name = "lastupdate")
-    private LocalDateTime lastUpdate;
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private Date lastUpdate;
 
-    public User(){
-
-    }
-
-    public User(Long id,UserContactInfo userContactInfos, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobTitle, User managerUserId, User createdBy, LocalDateTime creationDate, LocalDateTime lastUpdate) {
+    public User(Long id, UserContactInfo userContactInfo, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy) {
         this.id = id;
-        this.userContactInfos = userContactInfos;
+        this.userContactInfo = userContactInfo;
         this.enabled = enabled;
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.title = title;
         this.jobTitle = jobTitle;
         this.managerUserId = managerUserId;
         this.createdBy = createdBy;
-        this.creationDate = creationDate;
-        this.lastUpdate = lastUpdate;
     }
 
-    public Long getId() {
-        return id;
+    public User() {
+
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
-    public UserContactInfo getUserContactInfo() {
-        return userContactInfos;
-    }
-
-    public void setUserContactInfo(UserContactInfo userContactInfo) {
-        this.userContactInfos = userContactInfo;
+    public Long getId() {
+        return id;
     }
 
     public boolean isEnabled() {
@@ -132,20 +107,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getTitle() {
@@ -180,19 +155,19 @@ public class User implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
-    public LocalDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -200,11 +175,12 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", userContactInfo=" + userContactInfo +
                 ", enabled=" + enabled +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", title='" + title + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", managerUserId=" + managerUserId +
@@ -214,4 +190,3 @@ public class User implements Serializable {
                 '}';
     }
 }
-

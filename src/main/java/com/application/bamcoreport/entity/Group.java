@@ -1,8 +1,5 @@
 package com.application.bamcoreport.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,37 +7,60 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "group")
+@Table(name = "groups")
 public class Group {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "parent_path", nullable = false)
     private String parentPath;
+
+    @Column(name = "display_name", nullable = false)
     private String displayname;
+
+    @Column(name = "description", nullable = false)
     private String description;
 
-
-    @JsonIgnore
-    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
     private User createdBy;
 
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
     private Date lastUpdate;
+
+
+    public Group(Long id, String name, String parentPath, String displayname, String description, User createdBy) {
+        this.id = id;
+        this.name = name;
+        this.parentPath = parentPath;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdBy = createdBy;
+    }
+
+    public Group() {
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }
 
-    @Column(name = "name", nullable = false)
+
     public String getName() {
         return name;
     }
@@ -49,7 +69,7 @@ public class Group {
         this.name = name;
     }
 
-    @Column(name = "parent_path", nullable = false)
+
     public String getParentPath() {
         return parentPath;
     }
@@ -58,7 +78,7 @@ public class Group {
         this.parentPath = parentPath;
     }
 
-    @Column(name = "display_name", nullable = false)
+
     public String getDisplayname() {
         return displayname;
     }
@@ -67,7 +87,7 @@ public class Group {
         this.displayname = displayname;
     }
 
-    @Column(name = "description", nullable = false)
+
     public String getDescription() {
         return description;
     }
@@ -84,8 +104,7 @@ public class Group {
         this.createdBy = createdBy;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -93,8 +112,7 @@ public class Group {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
-    @LastModifiedDate
-    @Column(name = "updated_at")
+
     public Date getLastUpdate() {
         return lastUpdate;
     }
@@ -103,4 +121,17 @@ public class Group {
         this.lastUpdate = lastUpdate;
     }
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentPath='" + parentPath + '\'' +
+                ", displayname='" + displayname + '\'' +
+                ", description='" + description + '\'' +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
