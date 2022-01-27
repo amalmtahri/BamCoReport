@@ -14,7 +14,7 @@ public class RoleDto {
     private String name;
     private String displayName;
     private String description;
-    private User createdBy;
+    private User createdby;
     private Date creationDate;
     private Date lastUpdate;
 
@@ -27,7 +27,7 @@ public class RoleDto {
         this.name = name;
         this.displayName = displayName;
         this.description = description;
-        this.createdBy = createdBy;
+        this.createdby = createdBy;
         this.creationDate = creationDate;
         this.lastUpdate = lastUpdate;
     }
@@ -68,11 +68,11 @@ public class RoleDto {
     }
 
     public User getCreatedBy() {
-        return createdBy;
+        return createdby;
     }
 
     public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+        this.createdby = createdBy;
     }
 
 
@@ -101,7 +101,7 @@ public class RoleDto {
                 ", name='" + name + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
-                ", createdBy=" + createdBy +
+                ", createdBy=" + createdby +
                 ", creationDate=" + creationDate +
                 ", lastUpdate=" + lastUpdate +
                 '}';
