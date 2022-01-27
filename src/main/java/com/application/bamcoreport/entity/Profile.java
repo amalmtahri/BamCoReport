@@ -14,26 +14,47 @@ import java.sql.Date;
 @NoArgsConstructor
 @Table(name = "profiles")
 public class Profile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "isdefault", nullable = false)
     private  boolean isDefault;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "description", nullable = false)
     private  String description;
+
+    @CreatedDate
+    @Column(name = "creationdate", nullable = false, updatable = false)
     private Date creationDate;
-    private Long createdBy;
+
+    @ManyToOne()
+    @JoinColumn(name="users_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private User createdBy;
+
+    @LastModifiedDate
+    @Column(name = "lastupdatedate", nullable = false)
     private Date lastUpdateDate;
-    private Long lastUpdateBy;
+
+
+    @ManyToOne()
+    @JoinColumn(name="users_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private User lastUpdateBy;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }
 
-    @Column(name = "isdefault", nullable = false)
+
     public boolean isDefault() {
         return isDefault;
     }
@@ -42,7 +63,7 @@ public class Profile {
         isDefault = aDefault;
     }
 
-    @Column(name = "name", nullable = false)
+
     public String getName() {
         return name;
     }
@@ -51,7 +72,7 @@ public class Profile {
         this.name = name;
     }
 
-    @Column(name = "description", nullable = false)
+
     public String getDescription() {
         return description;
     }
@@ -61,8 +82,7 @@ public class Profile {
     }
 
 
-    @CreatedDate
-    @Column(name = "creationdate", nullable = false, updatable = false)
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -71,17 +91,16 @@ public class Profile {
         this.creationDate = creationDate;
     }
 
-    @Column(name = "createdby", nullable = false)
-    public Long getCreatedBy() {
+
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Long createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
-    @LastModifiedDate
-    @Column(name = "lastupdatedate", nullable = false)
+
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }
@@ -90,12 +109,27 @@ public class Profile {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    @Column(name = "lastupdateby", nullable = false)
-    public Long getLastUpdateBy() {
+
+    public User getLastUpdateBy() {
         return lastUpdateBy;
     }
 
-    public void setLastUpdateBy(Long lastUpdateBy) {
+    public void setLastUpdateBy(User lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", isDefault=" + isDefault +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", createdBy=" + createdBy +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", lastUpdateBy=" + lastUpdateBy +
+                '}';
     }
 }

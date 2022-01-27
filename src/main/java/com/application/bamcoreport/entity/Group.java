@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "group")
+@Table(name = "groups")
 public class Group {
 
     @Id
@@ -121,5 +121,17 @@ public class Group {
         this.lastUpdate = lastUpdate;
     }
 
-
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentPath='" + parentPath + '\'' +
+                ", displayname='" + displayname + '\'' +
+                ", description='" + description + '\'' +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

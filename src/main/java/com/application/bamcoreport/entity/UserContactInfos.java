@@ -1,5 +1,6 @@
 package com.application.bamcoreport.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,10 +12,15 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user-contactinfo")
+@Table(name = "user_contactinfos")
 public class UserContactInfos {
     private Long id;
-    private Long userId;
+
+    @JsonIgnore
+    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "id")
+    private User userId;
+
     private String email;
     private String phone;
     private String mobile;
@@ -41,11 +47,13 @@ public class UserContactInfos {
         return id;
     }
 
-    public Long getUserId() {
+
+
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
@@ -186,4 +194,27 @@ public class UserContactInfos {
         this.lastUpdate = lastUpdate;
     }
 
+
+    @Override
+    public String toString() {
+        return "UserContactInfos{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", fax='" + fax + '\'' +
+                ", building='" + building + '\'' +
+                ", room='" + room + '\'' +
+                ", address='" + address + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", website='" + website + '\'' +
+                ", personal=" + personal +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

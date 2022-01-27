@@ -1,6 +1,7 @@
 package com.application.bamcoreport.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -8,12 +9,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonIgnore
+    @OneToOne(targetEntity = UserContactInfos.class, mappedBy = "userId")
+    private UserContactInfos userContactInfo;
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
@@ -52,8 +57,9 @@ public class User {
     @Column(name = "updated_at")
     private Date lastUpdate;
 
-    public User(Long id, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy) {
+    public User(Long id, UserContactInfos userContactInfo, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy) {
         this.id = id;
+        this.userContactInfo = userContactInfo;
         this.enabled = enabled;
         this.username = username;
         this.password = password;
@@ -165,5 +171,22 @@ public class User {
         this.lastUpdate = lastUpdate;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userContactInfo=" + userContactInfo +
+                ", enabled=" + enabled +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", title='" + title + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", managerUserId=" + managerUserId +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

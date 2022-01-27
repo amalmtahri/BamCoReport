@@ -91,4 +91,16 @@ public class UserMemberShip {
     public void setAssignedDate(Date assignedDate) {
         this.assignedDate = assignedDate;
     }
+
+    @Override
+    public String toString() {
+        return "UserMemberShip{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                ", groupId=" + groupId +
+                ", assignedBy=" + assignedBy +
+                ", assignedDate=" + assignedDate +
+                '}';
+    }
 }
