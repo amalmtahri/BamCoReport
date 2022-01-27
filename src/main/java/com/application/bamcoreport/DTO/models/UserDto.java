@@ -1,68 +1,44 @@
-package com.application.bamcoreport.entity;
+package com.application.bamcoreport.DTO.models;
 
+import com.application.bamcoreport.entity.User;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
+import io.swagger.annotations.ApiModel;
 
-@Entity
-@Table(name = "users")
-public class User {
+@ApiModel("User")
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JsonIgnore
-    @OneToOne(targetEntity = UserContactInfo.class, mappedBy = "userId")
-    private UserContactInfo userContactInfo;
-
-    @Column(name = "enabled", nullable = false)
     private boolean enabled;
-
-    @Column(name = "username", nullable = false)
     private String username;
-
-    @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "first_name", nullable = false)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false)
     private String lastName;
-
-    @Column(name = "title", nullable = false)
     private String title;
-
-    @Column(name = "job_title", nullable = false)
     private String jobTitle;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manageruserid")
     private User managerUserId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "createdby")
     private User createdBy;
-
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
     private Date lastUpdate;
 
 
-    public User() {
-
+    public UserDto() {
     }
 
+    public UserDto(Long id, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy, Date creationDate, Date lastUpdate) {
+        this.id = id;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.title = title;
+        this.jobTitle = jobTitle;
+        this.managerUserId = managerUserId;
+        this.createdBy = createdBy;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -163,9 +139,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDto{" +
                 "id=" + id +
-                ", userContactInfo=" + userContactInfo +
                 ", enabled=" + enabled +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

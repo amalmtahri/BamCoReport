@@ -1,59 +1,40 @@
-package com.application.bamcoreport.entity;
+package com.application.bamcoreport.DTO.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.application.bamcoreport.entity.User;
+import io.swagger.annotations.ApiModel;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 
-@Table(name = "roles")
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@ApiModel("Role")
+public class RoleDto {
+
+
     private Long id;
-
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "display_name", nullable = false)
     private String displayName;
-
-    @Column(name = "description", nullable = false)
     private String description;
-
-
-    @ManyToOne
-    @JoinColumn(name = "createdby")
-    private User createdBy;
-
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    private User createdby;
     private Date creationDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
     private Date lastUpdate;
 
-    public Role(Long id, String name, String displayName, String description, User createdBy) {
+
+    public RoleDto() {
+    }
+
+    public RoleDto(Long id, String name, String displayName, String description, User createdBy, Date creationDate, Date lastUpdate) {
         this.id = id;
         this.name = name;
         this.displayName = displayName;
         this.description = description;
-        this.createdBy = createdBy;
-    }
-
-    public Role() {
-
+        this.createdby = createdBy;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Long getId() {
         return id;
@@ -87,11 +68,11 @@ public class Role {
     }
 
     public User getCreatedBy() {
-        return createdBy;
+        return createdby;
     }
 
     public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+        this.createdby = createdBy;
     }
 
 
@@ -112,14 +93,15 @@ public class Role {
         this.lastUpdate = lastUpdate;
     }
 
+
     @Override
     public String toString() {
-        return "Role{" +
+        return "RoleDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
-                ", createdBy=" + createdBy +
+                ", createdBy=" + createdby +
                 ", creationDate=" + creationDate +
                 ", lastUpdate=" + lastUpdate +
                 '}';

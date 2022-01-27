@@ -1,53 +1,32 @@
-package com.application.bamcoreport.entity;
+package com.application.bamcoreport.DTO.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.application.bamcoreport.entity.User;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-@Entity
+public class GroupDto {
 
-@Table(name = "roles")
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "display_name", nullable = false)
-    private String displayName;
-
-    @Column(name = "description", nullable = false)
+    private String parentPath;
+    private String displayname;
     private String description;
-
-
-    @ManyToOne
-    @JoinColumn(name = "createdby")
     private User createdBy;
-
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
     private Date lastUpdate;
 
-    public Role(Long id, String name, String displayName, String description, User createdBy) {
-        this.id = id;
-        this.name = name;
-        this.displayName = displayName;
-        this.description = description;
-        this.createdBy = createdBy;
+    public GroupDto() {
     }
 
-    public Role() {
-
+    public GroupDto(Long id, String name, String parentPath, String displayname, String description, User createdBy, Date creationDate, Date lastUpdate) {
+        this.id = id;
+        this.name = name;
+        this.parentPath = parentPath;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdBy = createdBy;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
     }
 
     public void setId(Long id) {
@@ -69,12 +48,21 @@ public class Role {
     }
 
 
-    public String getDisplayName() {
-        return displayName;
+    public String getParentPath() {
+        return parentPath;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setParentPath(String parentPath) {
+        this.parentPath = parentPath;
+    }
+
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
 
 
@@ -103,7 +91,6 @@ public class Role {
         this.creationDate = creationDate;
     }
 
-
     public Date getLastUpdate() {
         return lastUpdate;
     }
@@ -112,12 +99,14 @@ public class Role {
         this.lastUpdate = lastUpdate;
     }
 
+
     @Override
     public String toString() {
-        return "Role{" +
+        return "GroupDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", displayName='" + displayName + '\'' +
+                ", parentPath='" + parentPath + '\'' +
+                ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
                 ", createdBy=" + createdBy +
                 ", creationDate=" + creationDate +
