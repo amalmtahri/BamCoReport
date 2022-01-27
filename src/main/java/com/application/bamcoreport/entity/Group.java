@@ -1,5 +1,6 @@
 package com.application.bamcoreport.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +20,13 @@ public class Group {
     private String parentPath;
     private String displayname;
     private String description;
+
+
+    @JsonIgnore
+    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "id")
     private User createdBy;
+
     private Date creationDate;
     private Date lastUpdate;
 

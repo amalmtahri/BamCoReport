@@ -1,50 +1,97 @@
 package com.application.bamcoreport.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user_contactinfos")
-public class UserContactInfos {
+public class UserContactInfo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
 
     @JsonIgnore
     @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "userid", referencedColumnName = "id")
     private User userId;
 
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone", length = 50)
     private String phone;
+
+    @Column(name = "mobile", length = 50)
     private String mobile;
+
+    @Column(name = "fax", length = 50)
     private String fax;
+
+    @Column(name = "building", length = 50)
     private String building;
+
+    @Column(name = "room", length = 50)
     private String room;
+
+    @Column(name = "address")
     private String address;
-    private String zipcode;
+
+    @Column(name = "zipcode", length = 50)
+    private String zipCode;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "website")
     private String website;
+
+    @Column(name = "personal", columnDefinition = "boolean default false")
     private boolean personal;
-    private Date creationDate;
-    private Date lastUpdate;
+
+    public UserContactInfo(){
+
+    }
+
+    public UserContactInfo(Long id, User userId, String email, String phone, String mobile, String fax, String building, String room, String address, String zipCode, String city, String state, String country, String website, boolean personal) {
+        this.id = id;
+        this.userId = userId;
+        this.email = email;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.fax = fax;
+        this.building = building;
+        this.room = room;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.website = website;
+        this.personal = personal;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
     }
 
 
@@ -57,7 +104,6 @@ public class UserContactInfos {
         this.userId = userId;
     }
 
-    @Column(name = "email", nullable = false)
     public String getEmail() {
         return email;
     }
@@ -66,7 +112,6 @@ public class UserContactInfos {
         this.email = email;
     }
 
-    @Column(name = "phone", nullable = false)
     public String getPhone() {
         return phone;
     }
@@ -75,7 +120,6 @@ public class UserContactInfos {
         this.phone = phone;
     }
 
-    @Column(name = "mobile", nullable = false)
     public String getMobile() {
         return mobile;
     }
@@ -84,7 +128,6 @@ public class UserContactInfos {
         this.mobile = mobile;
     }
 
-    @Column(name = "fax", nullable = false)
     public String getFax() {
         return fax;
     }
@@ -93,7 +136,6 @@ public class UserContactInfos {
         this.fax = fax;
     }
 
-    @Column(name = "building", nullable = false)
     public String getBuilding() {
         return building;
     }
@@ -102,7 +144,6 @@ public class UserContactInfos {
         this.building = building;
     }
 
-    @Column(name = "room", nullable = false)
     public String getRoom() {
         return room;
     }
@@ -111,7 +152,6 @@ public class UserContactInfos {
         this.room = room;
     }
 
-    @Column(name = "address", nullable = false)
     public String getAddress() {
         return address;
     }
@@ -120,16 +160,14 @@ public class UserContactInfos {
         this.address = address;
     }
 
-    @Column(name = "zipcode", nullable = false)
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    @Column(name = "city", nullable = false)
     public String getCity() {
         return city;
     }
@@ -138,7 +176,6 @@ public class UserContactInfos {
         this.city = city;
     }
 
-    @Column(name = "state", nullable = false)
     public String getState() {
         return state;
     }
@@ -147,7 +184,6 @@ public class UserContactInfos {
         this.state = state;
     }
 
-    @Column(name = "country", nullable = false)
     public String getCountry() {
         return country;
     }
@@ -156,7 +192,6 @@ public class UserContactInfos {
         this.country = country;
     }
 
-    @Column(name = "website", nullable = false)
     public String getWebsite() {
         return website;
     }
@@ -165,7 +200,6 @@ public class UserContactInfos {
         this.website = website;
     }
 
-    @Column(name = "personal", nullable = false)
     public boolean isPersonal() {
         return personal;
     }
@@ -174,24 +208,24 @@ public class UserContactInfos {
         this.personal = personal;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    public Date getCreationDate() {
-        return creationDate;
+    @Override
+    public String toString() {
+        return "UserContactInfo{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", fax='" + fax + '\'' +
+                ", building='" + building + '\'' +
+                ", room='" + room + '\'' +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", website='" + website + '\'' +
+                ", personal=" + personal +
+                '}';
     }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
 }

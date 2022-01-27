@@ -30,8 +30,8 @@ public class User implements Serializable {
 
 
     @JsonIgnore
-    @OneToOne(targetEntity = UserContactInfos.class, mappedBy = "userId")
-    private UserContactInfos userContactInfos;
+    @OneToOne(targetEntity = UserContactInfo.class, mappedBy = "userId")
+    private UserContactInfo userContactInfos;
 
     @Column(name = "enabled", columnDefinition = "boolean default false")
     private boolean enabled;
@@ -74,7 +74,7 @@ public class User implements Serializable {
 
     }
 
-    public User(Long id,UserContactInfos userContactInfos, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobTitle, User managerUserId, User createdBy, LocalDateTime creationDate, LocalDateTime lastUpdate) {
+    public User(Long id,UserContactInfo userContactInfos, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobTitle, User managerUserId, User createdBy, LocalDateTime creationDate, LocalDateTime lastUpdate) {
         this.id = id;
         this.userContactInfos = userContactInfos;
         this.enabled = enabled;
@@ -100,11 +100,11 @@ public class User implements Serializable {
 
 
 
-    public UserContactInfos getUserContactInfo() {
+    public UserContactInfo getUserContactInfo() {
         return userContactInfos;
     }
 
-    public void setUserContactInfo(UserContactInfos userContactInfo) {
+    public void setUserContactInfo(UserContactInfo userContactInfo) {
         this.userContactInfos = userContactInfo;
     }
 
