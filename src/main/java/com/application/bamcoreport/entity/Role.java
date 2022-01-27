@@ -1,7 +1,5 @@
 package com.application.bamcoreport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -9,29 +7,56 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Table(name = "roles")
 public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "display_name", nullable = false)
     private String displayName;
+
+    @Column(name = "description", nullable = false)
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
     private User createdBy;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
     private Date lastUpdate;
+
+    public Role(Long id, String name, String displayName, String description, User createdBy) {
+        this.id = id;
+        this.name = name;
+        this.displayName = displayName;
+        this.description = description;
+        this.createdBy = createdBy;
+    }
+
+    public Role() {
+
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }
 
-    @Column(name = "name", nullable = false)
+
     public String getName() {
         return name;
     }
@@ -40,7 +65,7 @@ public class Role {
         this.name = name;
     }
 
-    @Column(name = "display_name", nullable = false)
+
     public String getDisplayName() {
         return displayName;
     }
@@ -49,7 +74,7 @@ public class Role {
         this.displayName = displayName;
     }
 
-    @Column(name = "description", nullable = false)
+
     public String getDescription() {
         return description;
     }
@@ -66,8 +91,7 @@ public class Role {
         this.createdBy = createdBy;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -76,8 +100,7 @@ public class Role {
         this.creationDate = creationDate;
     }
 
-    @LastModifiedDate
-    @Column(name = "updated_at")
+
     public Date getLastUpdate() {
         return lastUpdate;
     }

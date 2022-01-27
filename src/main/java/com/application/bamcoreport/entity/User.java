@@ -1,8 +1,6 @@
 package com.application.bamcoreport.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,35 +8,75 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
+    @Column(name = "username", nullable = false)
     private String username;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "job_title", nullable = false)
     private String jobTitle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manageruserid")
     private User managerUserId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
     private User createdBy;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date creationDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
     private Date lastUpdate;
+
+    public User(Long id, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy) {
+        this.id = id;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.title = title;
+        this.jobTitle = jobTitle;
+        this.managerUserId = managerUserId;
+        this.createdBy = createdBy;
+    }
+
+    public User() {
+
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
 
-    @Column(name = "enabled", nullable = false)
     public boolean isEnabled() {
         return enabled;
     }
@@ -47,7 +85,6 @@ public class User {
         this.enabled = enabled;
     }
 
-    @Column(name = "username", nullable = false)
     public String getUsername() {
         return username;
     }
@@ -56,7 +93,6 @@ public class User {
         this.username = username;
     }
 
-    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -65,7 +101,6 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -74,7 +109,6 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -83,7 +117,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Column(name = "title", nullable = false)
     public String getTitle() {
         return title;
     }
@@ -92,7 +125,6 @@ public class User {
         this.title = title;
     }
 
-    @Column(name = "job_title", nullable = false)
     public String getJobTitle() {
         return jobTitle;
     }
@@ -117,8 +149,6 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
     public Date getCreationDate() {
         return creationDate;
     }
@@ -126,8 +156,7 @@ public class User {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
-    @LastModifiedDate
-    @Column(name = "updated_at")
+
     public Date getLastUpdate() {
         return lastUpdate;
     }

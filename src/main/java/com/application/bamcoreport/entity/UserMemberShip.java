@@ -1,61 +1,81 @@
 package com.application.bamcoreport.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user_memberships")
 public class UserMemberShip {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private User user_id;
-    private Role role_id;
-    private Group group_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid")
+    private User userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "roleid")
+    private Role roleId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groupid")
+    private Group groupId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignedby")
     private User assignedBy;
+
+    @CreatedDate
+    @Column(name = "assigned_date", nullable = false, updatable = false)
     private Date assignedDate;
 
+    public UserMemberShip(Long id, User userId, Role roleId, Group groupId, User assignedBy) {
+        this.id = id;
+        this.userId = userId;
+        this.roleId = roleId;
+        this.groupId = groupId;
+        this.assignedBy = assignedBy;
+    }
+
+    public UserMemberShip() {
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    public Role getRole_id() {
-        return role_id;
+    public Role getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(Role role_id) {
-        this.role_id = role_id;
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
     }
 
-    public Group getGroup_id() {
-        return group_id;
+    public Group getGroupId() {
+        return groupId;
     }
 
-    public void setGroup_id(Group group_id) {
-        this.group_id = group_id;
+    public void setGroupId(Group groupId) {
+        this.groupId = groupId;
     }
 
-    @ManyToMany
-    @JoinColumn(name = "user_id")
     public User getAssignedBy() {
         return assignedBy;
     }
@@ -64,8 +84,6 @@ public class UserMemberShip {
         this.assignedBy = assignedBy;
     }
 
-    @CreatedDate
-    @Column(name = "assigned_date", nullable = false, updatable = false)
     public Date getAssignedDate() {
         return assignedDate;
     }
