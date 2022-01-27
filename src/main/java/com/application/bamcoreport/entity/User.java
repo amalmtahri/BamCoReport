@@ -8,37 +8,106 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "user")
-public class User {
+@Table(name = "users")
+public class User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+
+
+    @JsonIgnore
+    @OneToOne(targetEntity = UserContactInfos.class, mappedBy = "userId")
+    private UserContactInfos userContactInfos;
+
+    @Column(name = "enabled", columnDefinition = "boolean default false")
     private boolean enabled;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password", length = 60)
     private String password;
-    private String firstName;
-    private String lastName;
+
+    @Column(name = "firstname")
+    private String firstname;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "title", length = 50)
     private String title;
+
+    @Column(name = "jobtitle")
     private String jobTitle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manageruserid")
     private User managerUserId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
     private User createdBy;
-    private Date creationDate;
-    private Date lastUpdate;
+
+    @CreationTimestamp
+    @Column(name = "creationdate")
+    private LocalDateTime creationDate;
+
+    @UpdateTimestamp
+    @Column(name = "lastupdate")
+    private LocalDateTime lastUpdate;
+
+    public User(){
+
+    }
+
+    public User(Long id,UserContactInfos userContactInfos, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobTitle, User managerUserId, User createdBy, LocalDateTime creationDate, LocalDateTime lastUpdate) {
+        this.id = id;
+        this.userContactInfos = userContactInfos;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.jobTitle = jobTitle;
+        this.managerUserId = managerUserId;
+        this.createdBy = createdBy;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
+
+
+    public UserContactInfos getUserContactInfo() {
+        return userContactInfos;
     }
 
-    @Column(name = "enabled", nullable = false)
+    public void setUserContactInfo(UserContactInfos userContactInfo) {
+        this.userContactInfos = userContactInfo;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -47,7 +116,6 @@ public class User {
         this.enabled = enabled;
     }
 
-    @Column(name = "username", nullable = false)
     public String getUsername() {
         return username;
     }
@@ -56,7 +124,6 @@ public class User {
         this.username = username;
     }
 
-    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -65,25 +132,22 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "first_name", nullable = false)
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    @Column(name = "last_name", nullable = false)
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    @Column(name = "title", nullable = false)
     public String getTitle() {
         return title;
     }
@@ -92,7 +156,6 @@ public class User {
         this.title = title;
     }
 
-    @Column(name = "job_title", nullable = false)
     public String getJobTitle() {
         return jobTitle;
     }
@@ -117,24 +180,38 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    public Date getLastUpdate() {
+
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", enabled=" + enabled +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", title='" + title + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", managerUserId=" + managerUserId +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
+

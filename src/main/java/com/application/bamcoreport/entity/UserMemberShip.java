@@ -30,7 +30,7 @@ public class UserMemberShip {
         return id;
     }
 
-    public User getUser_id() {
+   /* public User getUser_id() {
         return user_id;
     }
 
@@ -52,9 +52,9 @@ public class UserMemberShip {
 
     public void setGroup_id(Group group_id) {
         this.group_id = group_id;
-    }
+    }*/
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinColumn(name = "user_id")
     public User getAssignedBy() {
         return assignedBy;
@@ -72,5 +72,5 @@ public class UserMemberShip {
 
     public void setAssignedDate(Date assignedDate) {
         this.assignedDate = assignedDate;
-    }
+    }*/
 }

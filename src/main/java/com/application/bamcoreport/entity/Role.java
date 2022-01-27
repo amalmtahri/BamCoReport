@@ -8,30 +8,71 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "roles")
-public class Role {
+@Table(name = "role")
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "displayname")
     private String displayName;
+
+    @Column(name = "description",columnDefinition="TEXT")
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
     private User createdBy;
-    private Date creationDate;
-    private Date lastUpdate;
+
+    @CreationTimestamp
+    @Column(name = "creationdate")
+    private LocalDateTime creationDate;
+
+    @UpdateTimestamp
+    @Column(name = "lastupdate")
+    private LocalDateTime lastUpdate;
+
+    public Role(){
+
+    }
+
+    public Role(Long id, String name, String displayName, String description, User createdBy, LocalDateTime creationDate, LocalDateTime lastUpdate) {
+        this.id = id;
+        this.name = name;
+        this.displayName = displayName;
+        this.description = description;
+        this.createdBy = createdBy;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
 
-    @Column(name = "name", nullable = false)
+
     public String getName() {
         return name;
     }
@@ -40,7 +81,6 @@ public class Role {
         this.name = name;
     }
 
-    @Column(name = "display_name", nullable = false)
     public String getDisplayName() {
         return displayName;
     }
@@ -49,7 +89,6 @@ public class Role {
         this.displayName = displayName;
     }
 
-    @Column(name = "description", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -66,25 +105,32 @@ public class Role {
         this.createdBy = createdBy;
     }
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", description='" + description + '\'' +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
