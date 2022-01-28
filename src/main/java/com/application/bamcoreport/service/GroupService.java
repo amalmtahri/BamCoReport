@@ -3,12 +3,13 @@ package com.application.bamcoreport.service;
 import com.application.bamcoreport.DTO.models.GroupDto;
 import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Group;
-import com.application.bamcoreport.entity.Role;
 import com.application.bamcoreport.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GroupService implements IGroupService {
 
     @Autowired
@@ -32,7 +33,7 @@ public class GroupService implements IGroupService {
     }
 
 
-    public String deleteRole(Long id){
+    public String deleteGroup(Long id){
         repository.deleteById(id);
         return "Group removed !!";
     }
@@ -43,7 +44,7 @@ public class GroupService implements IGroupService {
         existingGroup.setParentPath(group.getParentPath());
         existingGroup.setDisplayname(group.getDisplayname());
         existingGroup.setDescription(group.getDescription());
-        existingGroup.setCreatedBy(group.getCreatedBy());
+        existingGroup.setCreatedby(group.getCreatedby());
         return repository.save(existingGroup);
     }
 }

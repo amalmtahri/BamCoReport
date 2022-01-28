@@ -11,20 +11,20 @@ public class GroupDto {
     private String parentPath;
     private String displayname;
     private String description;
-    private User createdBy;
+    private User createdby;
     private Date creationDate;
     private Date lastUpdate;
 
     public GroupDto() {
     }
 
-    public GroupDto(Long id, String name, String parentPath, String displayname, String description, User createdBy, Date creationDate, Date lastUpdate) {
+    public GroupDto(Long id, String name, String parentPath, String displayname, String description, User createdby, Date creationDate, Date lastUpdate) {
         this.id = id;
         this.name = name;
         this.parentPath = parentPath;
         this.displayname = displayname;
         this.description = description;
-        this.createdBy = createdBy;
+        this.createdby = createdby;
         this.creationDate = creationDate;
         this.lastUpdate = lastUpdate;
     }
@@ -66,22 +66,19 @@ public class GroupDto {
     }
 
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description;  }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public User getCreatedBy() {
-        return createdBy;
+    public User getCreatedby() {
+        return createdby;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedby(User createdby) {
+        this.createdby = createdby;
     }
-
 
     public Date getCreationDate() {
         return creationDate;
@@ -108,7 +105,7 @@ public class GroupDto {
                 ", parentPath='" + parentPath + '\'' +
                 ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
-                ", createdBy=" + createdBy +
+                ", createdby=" + createdby +
                 ", creationDate=" + creationDate +
                 ", lastUpdate=" + lastUpdate +
                 '}';

@@ -26,7 +26,7 @@ public class Group {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "createdby")
     private User createdBy;
 
@@ -39,13 +39,13 @@ public class Group {
     private Date lastUpdate;
 
 
-    public Group(Long id, String name, String parentPath, String displayname, String description, User createdBy) {
+    public Group(Long id, String name, String parentPath, String displayname, String description, User createdby) {
         this.id = id;
         this.name = name;
         this.parentPath = parentPath;
         this.displayname = displayname;
         this.description = description;
-        this.createdBy = createdBy;
+        this.createdBy = createdby;
     }
 
     public Group() {
@@ -96,14 +96,13 @@ public class Group {
         this.description = description;
     }
 
-    public User getCreatedBy() {
+    public User getCreatedby() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedby(User createdby) {
+        this.createdBy = createdby;
     }
-
 
     public Date getCreationDate() {
         return creationDate;
@@ -129,7 +128,7 @@ public class Group {
                 ", parentPath='" + parentPath + '\'' +
                 ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
-                ", createdBy=" + createdBy +
+                ", createdby=" + createdBy +
                 ", creationDate=" + creationDate +
                 ", lastUpdate=" + lastUpdate +
                 '}';
