@@ -17,6 +17,9 @@ public class RoleService implements IRoleService{
     @Autowired
     private RoleRepository repository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public List<RoleDto> getRoles() {
         List<Role> roles = repository.findAll();
@@ -24,24 +27,29 @@ public class RoleService implements IRoleService{
     }
 
     public Role saveRole(Role role){
+        User getUserData = userService.getUserById(role.getCreatedby().getId());
+        role.setCreatedby(getUserData);
         return repository.save(role);
     }
 
-    public Role getRoleById(Long id){
+    public Role getRoleById(long id){
         return repository.findById(id).orElse(null);
     }
 
-    public String deleteRole(Long id){
+    public String deleteRole(long id){
         repository.deleteById(id);
         return "Role removed !!";
     }
 
     public Role updateRole(Role role) {
         Role existingRole = repository.findById(role.getId()).orElse(null);
-        existingRole.setName(role.getName());
-        existingRole.setDisplayName(role.getDisplayName());
-        existingRole.setDescription(role.getDescription());
-        existingRole.setCreatedBy(role.getCreatedBy());
+        if(existingRole !=null) {
+            User getUserData = userService.getUserById(role.getCreatedby().getId());
+            existingRole.setName(role.getName());
+            existingRole.setDisplayname(role.getDisplayname());
+            existingRole.setDescription(role.getDescription());
+            existingRole.setCreatedby(getUserData);
+        }
         return repository.save(existingRole);
     }
 

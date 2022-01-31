@@ -2,6 +2,7 @@ package com.application.bamcoreport.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -15,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JsonIgnore
     @OneToOne(targetEntity = UserContactInfo.class, mappedBy = "userId")
@@ -27,49 +28,71 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "firstname", nullable = false)
+    private String firstname;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "lastname", nullable = false)
+    private String lastname;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "job_title", nullable = false)
-    private String jobTitle;
+    @Column(name = "jobtitle", nullable = false)
+    private String jobtitle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false,fetch=FetchType.LAZY)
     @JoinColumn(name = "manageruserid")
-    private User managerUserId;
+    private User manageruserid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false,fetch=FetchType.LAZY)
     @JoinColumn(name = "createdby")
-    private User createdBy;
+    private User createdby;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date creationDate;
+    @Column(name = "createdat", nullable = false, updatable = false)
+    private Date creationdate;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
-    private Date lastUpdate;
-
+    @Column(name = "updatedat")
+    private Date lastupdate;
 
     public User() {
-
     }
 
+    public User(long id, UserContactInfo userContactInfo, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby, Date creationdate, Date lastupdate) {
+        this.id = id;
+        this.userContactInfo = userContactInfo;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.jobtitle = jobtitle;
+        this.manageruserid = manageruserid;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
+    }
 
-    public void setId(Long id) {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
+    public UserContactInfo getUserContactInfo() {
+        return userContactInfo;
+    }
+
+    public void setUserContactInfo(UserContactInfo userContactInfo) {
+        this.userContactInfo = userContactInfo;
     }
 
     public boolean isEnabled() {
@@ -79,7 +102,6 @@ public class User {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
     public String getUsername() {
         return username;
@@ -97,20 +119,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getTitle() {
@@ -121,62 +143,43 @@ public class User {
         this.title = title;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getJobtitle() {
+        return jobtitle;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
     }
 
-    public User getManagerUserId() {
-        return managerUserId;
+    public User getManageruserid() {
+        return manageruserid;
     }
 
-    public void setManagerUserId(User managerUserId) {
-        this.managerUserId = managerUserId;
+    public void setManageruserid(User manageruserid) {
+        this.manageruserid = manageruserid;
     }
 
-    public User getCreatedBy() {
-        return createdBy;
+    public User getCreatedby() {
+        return createdby;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedby(User createdby) {
+        this.createdby = createdby;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Date getLastupdate() {
+        return lastupdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userContactInfo=" + userContactInfo +
-                ", enabled=" + enabled +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", title='" + title + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", managerUserId=" + managerUserId +
-                ", createdBy=" + createdBy +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
-                '}';
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
 }

@@ -3,19 +3,19 @@ package com.application.bamcoreport.DTO.models;
 import java.sql.Date;
 
 public class ProfileDto {
-    private Long id;
+    private long id;
     private  boolean isDefault;
     private String name;
     private  String description;
     private Date creationDate;
-    private Long createdBy;
+    private long createdBy;
     private Date lastUpdateDate;
-    private Long lastUpdateBy;
+    private long lastUpdateBy;
 
     public ProfileDto() {
     }
 
-    public ProfileDto(Long id, boolean isDefault, String name, String description, Date creationDate, Long createdBy, Date lastUpdateDate, Long lastUpdateBy) {
+    public ProfileDto(long id, boolean isDefault, String name, String description, Date creationDate, long createdBy, Date lastUpdateDate, long lastUpdateBy) {
         this.id = id;
         this.isDefault = isDefault;
         this.name = name;
@@ -26,11 +26,11 @@ public class ProfileDto {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -66,11 +66,11 @@ public class ProfileDto {
         this.creationDate = creationDate;
     }
 
-    public Long getCreatedBy() {
+    public long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Long createdBy) {
+    public void setCreatedBy(long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -82,11 +82,11 @@ public class ProfileDto {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public Long getLastUpdateBy() {
+    public long getLastUpdateBy() {
         return lastUpdateBy;
     }
 
-    public void setLastUpdateBy(Long lastUpdateBy) {
+    public void setLastUpdateBy(long lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
 }

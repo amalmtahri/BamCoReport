@@ -9,83 +9,82 @@ import java.util.Date;
 public class UserMemberShipDto {
 
 
-    private Long id;
-    private User userId;
-    private Role roleId;
-    private Group groupId;
-    private User assignedBy;
-    private Date assignedDate;
+    private long id;
+    private User userid;
+    private Role roleid;
+    private Group groupid;
+    private User assignedby;
+    private Date assigneddate;
 
     public UserMemberShipDto() {
     }
 
-    public UserMemberShipDto(Long id, User userId, Role roleId, Group groupId, User assignedBy, Date assignedDate) {
+    public UserMemberShipDto(long id, User userid, Role roleid, Group groupid, User assignedby, Date assigneddate) {
         this.id = id;
-        this.userId = userId;
-        this.roleId = roleId;
-        this.groupId = groupId;
-        this.assignedBy = assignedBy;
-        this.assignedDate = assignedDate;
+        this.userid = userid;
+        this.roleid = roleid;
+        this.groupid = groupid;
+        this.assignedby = assignedby;
+        this.assigneddate = assigneddate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public User getUserId() {
-        return userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public User getUserid() {
+        return userid;
     }
 
-    public Role getRoleId() {
-        return roleId;
+    public void setUserid(User userid) {
+        this.userid = userid;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public Role getRoleid() {
+        return roleid;
     }
 
-    public Group getGroupId() {
-        return groupId;
+    public void setRoleid(Role roleid) {
+        this.roleid = roleid;
     }
 
-    public void setGroupId(Group groupId) {
-        this.groupId = groupId;
+    public Group getGroupid() {
+        return groupid;
     }
 
-    public User getAssignedBy() {
-        return assignedBy;
+    public void setGroupid(Group groupid) {
+        this.groupid = groupid;
     }
 
-    public void setAssignedBy(User assignedBy) {
-        this.assignedBy = assignedBy;
+    public User getAssignedby() {
+        return assignedby;
     }
 
-    public Date getAssignedDate() {
-        return assignedDate;
+    public void setAssignedby(User assignedby) {
+        this.assignedby = assignedby;
     }
 
-    public void setAssignedDate(Date assignedDate) {
-        this.assignedDate = assignedDate;
+    public Date getAssigneddate() {
+        return assigneddate;
     }
 
+    public void setAssigneddate(Date assigneddate) {
+        this.assigneddate = assigneddate;
+    }
 
     @Override
     public String toString() {
         return "UserMemberShipDto{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", roleId=" + roleId +
-                ", groupId=" + groupId +
-                ", assignedBy=" + assignedBy +
-                ", assignedDate=" + assignedDate +
+                ", userid=" + userid +
+                ", roleid=" + roleid +
+                ", groupid=" + groupid +
+                ", assignedby=" + assignedby +
+                ", assigneddate=" + assigneddate +
                 '}';
     }
 }

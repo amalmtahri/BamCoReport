@@ -12,54 +12,54 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "parent_path", nullable = false)
-    private String parentPath;
+    @Column(name = "parentpath", nullable = false)
+    private String parentpath;
 
-    @Column(name = "display_name", nullable = false)
+    @Column(name = "displayname", nullable = false)
     private String displayname;
 
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "createdby")
-    private User createdBy;
+    @ManyToOne()
+    @JoinColumn(name="createdby")
+    private User createdby;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date creationDate;
+    @Column(name = "createdat", nullable = false, updatable = false)
+    private Date creationdate;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
-    private Date lastUpdate;
+    @Column(name = "updatedat")
+    private Date lastupdate;
 
-
-    public Group(Long id, String name, String parentPath, String displayname, String description, User createdby) {
-        this.id = id;
-        this.name = name;
-        this.parentPath = parentPath;
-        this.displayname = displayname;
-        this.description = description;
-        this.createdBy = createdby;
-    }
 
     public Group() {
     }
 
-    public void setId(Long id) {
+    public Group(long id, String name, String parentpath, String displayname, String description, User createdby, Date creationdate, Date lastupdate) {
         this.id = id;
+        this.name = name;
+        this.parentpath = parentpath;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
     }
 
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -69,15 +69,13 @@ public class Group {
         this.name = name;
     }
 
-
-    public String getParentPath() {
-        return parentPath;
+    public String getParentpath() {
+        return parentpath;
     }
 
-    public void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
+    public void setParentpath(String parentpath) {
+        this.parentpath = parentpath;
     }
-
 
     public String getDisplayname() {
         return displayname;
@@ -86,7 +84,6 @@ public class Group {
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
     }
-
 
     public String getDescription() {
         return description;
@@ -97,40 +94,41 @@ public class Group {
     }
 
     public User getCreatedby() {
-        return createdBy;
+        return createdby;
     }
 
     public void setCreatedby(User createdby) {
-        this.createdBy = createdby;
+        this.createdby = createdby;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Date getLastupdate() {
+        return lastupdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
+
 
     @Override
     public String toString() {
         return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parentPath='" + parentPath + '\'' +
+                ", parentpath='" + parentpath + '\'' +
                 ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
-                ", createdby=" + createdBy +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
+                ", createdby=" + createdby +
+                ", creationdate=" + creationdate +
+                ", lastupdate=" + lastupdate +
                 '}';
     }
 }

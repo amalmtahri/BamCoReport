@@ -6,38 +6,36 @@ import java.util.Date;
 
 public class GroupDto {
 
-    private Long id;
+    private long id;
     private String name;
-    private String parentPath;
+    private String parentpath;
     private String displayname;
     private String description;
     private User createdby;
-    private Date creationDate;
-    private Date lastUpdate;
+    private Date creationdate;
+    private Date lastupdate;
 
     public GroupDto() {
     }
 
-    public GroupDto(Long id, String name, String parentPath, String displayname, String description, User createdby, Date creationDate, Date lastUpdate) {
+    public GroupDto(long id, String name, String parentpath, String displayname, String description, User createdby, Date creationdate, Date lastupdate) {
         this.id = id;
         this.name = name;
-        this.parentPath = parentPath;
+        this.parentpath = parentpath;
         this.displayname = displayname;
         this.description = description;
         this.createdby = createdby;
-        this.creationDate = creationDate;
-        this.lastUpdate = lastUpdate;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -47,15 +45,13 @@ public class GroupDto {
         this.name = name;
     }
 
-
-    public String getParentPath() {
-        return parentPath;
+    public String getParentpath() {
+        return parentpath;
     }
 
-    public void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
+    public void setParentpath(String parentpath) {
+        this.parentpath = parentpath;
     }
-
 
     public String getDisplayname() {
         return displayname;
@@ -65,8 +61,9 @@ public class GroupDto {
         this.displayname = displayname;
     }
 
-
-    public String getDescription() { return description;  }
+    public String getDescription() {
+        return description;
+    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -80,34 +77,33 @@ public class GroupDto {
         this.createdby = createdby;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Date getLastupdate() {
+        return lastupdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
-
 
     @Override
     public String toString() {
         return "GroupDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parentPath='" + parentPath + '\'' +
+                ", parentPath='" + parentpath + '\'' +
                 ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
                 ", createdby=" + createdby +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
+                ", creationdate=" + creationdate +
+                ", lastupdate=" + lastupdate +
                 '}';
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/identity/role")
+@RequestMapping("/api/role")
 public class RoleController {
 
 
@@ -31,12 +31,12 @@ public class RoleController {
     }
 
     @GetMapping("/findById/{id}")
-    public Role findById(@PathVariable Long id){
+    public Role findById(@PathVariable long id){
         return service.getRoleById(id);
     }
 
     @DeleteMapping("/deleteRole/{id}")
-    public String deleteRole(@PathVariable Long id){
+    public String deleteRole(@PathVariable long id){
         return service.deleteRole(id);
     }
 

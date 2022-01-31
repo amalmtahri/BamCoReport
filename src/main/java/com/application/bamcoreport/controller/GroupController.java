@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/identity/group")
+@RequestMapping("/api/group")
 public class GroupController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class GroupController {
     }
 
     @GetMapping("/findGroup/{id}")
-    public Group findGroupById(@PathVariable Long id){
+    public Group findGroupById(@PathVariable long id){
         return service.getGroupById(id);
     }
 
@@ -40,7 +40,7 @@ public class GroupController {
     }
 
     @DeleteMapping("/deleteGroup/{id}")
-    public String deleteGroup(@PathVariable Long id){
+    public String deleteGroup(@PathVariable long id){
         return service.deleteGroup(id);
     }
 }

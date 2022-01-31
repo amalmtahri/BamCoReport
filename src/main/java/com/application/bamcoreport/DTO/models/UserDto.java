@@ -3,49 +3,52 @@ package com.application.bamcoreport.DTO.models;
 import com.application.bamcoreport.entity.User;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 
 @ApiModel("User")
 public class UserDto {
 
-    private Long id;
+    private long id;
     private boolean enabled;
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String title;
-    private String jobTitle;
-    private User managerUserId;
-    private User createdBy;
-    private Date creationDate;
-    private Date lastUpdate;
-
+    private String jobtitle;
+    private User manageruserid;
+    private User createdby;
+    private Date creationdate;
+    private Date lastupdate;
 
     public UserDto() {
     }
 
-    public UserDto(Long id, boolean enabled, String username, String password, String firstName, String lastName, String title, String jobTitle, User managerUserId, User createdBy, Date creationDate, Date lastUpdate) {
+    public UserDto(long id, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby, Date creationdate, Date lastupdate) {
         this.id = id;
         this.enabled = enabled;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.title = title;
-        this.jobTitle = jobTitle;
-        this.managerUserId = managerUserId;
-        this.createdBy = createdBy;
-        this.creationDate = creationDate;
-        this.lastUpdate = lastUpdate;
+        this.jobtitle = jobtitle;
+        this.manageruserid = manageruserid;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public boolean isEnabled() {
@@ -55,7 +58,6 @@ public class UserDto {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
     public String getUsername() {
         return username;
@@ -73,20 +75,20 @@ public class UserDto {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getTitle() {
@@ -97,44 +99,44 @@ public class UserDto {
         this.title = title;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getJobtitle() {
+        return jobtitle;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
     }
 
-    public User getManagerUserId() {
-        return managerUserId;
+    public User getManageruserid() {
+        return manageruserid;
     }
 
-    public void setManagerUserId(User managerUserId) {
-        this.managerUserId = managerUserId;
+    public void setManageruserid(User manageruserid) {
+        this.manageruserid = manageruserid;
     }
 
-    public User getCreatedBy() {
-        return createdBy;
+    public User getCreatedby() {
+        return createdby;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedby(User createdby) {
+        this.createdby = createdby;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Date getLastupdate() {
+        return lastupdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
 
     @Override
@@ -144,14 +146,14 @@ public class UserDto {
                 ", enabled=" + enabled +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", title='" + title + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", managerUserId=" + managerUserId +
-                ", createdBy=" + createdBy +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
+                ", jobtitle='" + jobtitle + '\'' +
+                ", manageruserid=" + manageruserid +
+                ", createdby=" + createdby +
+                ", creationdate=" + creationdate +
+                ", lastupdate=" + lastupdate +
                 '}';
     }
 }

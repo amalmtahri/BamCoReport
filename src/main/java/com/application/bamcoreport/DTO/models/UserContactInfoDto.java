@@ -3,8 +3,8 @@ package com.application.bamcoreport.DTO.models;
 import java.util.Date;
 
 public class UserContactInfoDto {
-    private Long id;
-    private Long userId;
+    private long id;
+    private long userId;
     private String email;
     private String phone;
     private String mobile;
@@ -24,7 +24,7 @@ public class UserContactInfoDto {
     public UserContactInfoDto() {
     }
 
-    public UserContactInfoDto(Long id, Long userId, String email, String phone, String mobile, String fax, String building, String room, String address, String zipcode, String city, String state, String country, String website, boolean personal, Date creationDate, Date lastUpdate) {
+    public UserContactInfoDto(long id, long userId, String email, String phone, String mobile, String fax, String building, String room, String address, String zipcode, String city, String state, String country, String website, boolean personal, Date creationDate, Date lastUpdate) {
         this.id = id;
         this.userId = userId;
         this.email = email;
@@ -44,19 +44,19 @@ public class UserContactInfoDto {
         this.lastUpdate = lastUpdate;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

@@ -17,7 +17,7 @@ public class UserContactInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
 
 
     @JsonIgnore
@@ -68,7 +68,7 @@ public class UserContactInfo implements Serializable {
 
     }
 
-    public UserContactInfo(Long id, User userId, String email, String phone, String mobile, String fax, String building, String room, String address, String zipCode, String city, String state, String country, String website, boolean personal) {
+    public UserContactInfo(long id, User userId, String email, String phone, String mobile, String fax, String building, String room, String address, String zipCode, String city, String state, String country, String website, boolean personal) {
         this.id = id;
         this.userId = userId;
         this.email = email;
@@ -86,11 +86,11 @@ public class UserContactInfo implements Serializable {
         this.personal = personal;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

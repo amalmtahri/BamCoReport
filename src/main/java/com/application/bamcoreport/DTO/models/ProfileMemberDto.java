@@ -8,7 +8,7 @@ import com.application.bamcoreport.entity.User;
 import java.util.Date;
 
 public class ProfileMemberDto {
-    private Long id;
+    private long id;
     private Profile profile;
     private User user;
     private Group group;
@@ -19,7 +19,7 @@ public class ProfileMemberDto {
     public ProfileMemberDto() {
     }
 
-    public ProfileMemberDto(Long id, Profile profile, User user, Group group, Role role, Date creationDate, Date lastUpdate) {
+    public ProfileMemberDto(long id, Profile profile, User user, Group group, Role role, Date creationDate, Date lastUpdate) {
         this.id = id;
         this.profile = profile;
         this.user = user;
@@ -29,11 +29,11 @@ public class ProfileMemberDto {
         this.lastUpdate = lastUpdate;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

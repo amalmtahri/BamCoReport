@@ -10,21 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/identity/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
     private UserService service;
 
     @PostMapping("/addUser")
-    public User saveUser(@RequestBody User user){
-       return service.saveUser(user);
+    public UserDto saveUser(@RequestBody UserDto userDto){
+       return service.saveUser(userDto);
     }
 
-    @PostMapping("/addUsers")
-    public List<User> saveUsers(@RequestBody List<User> users){
-        return service.saveUsers(users);
-    }
+
 
     @GetMapping("/findUsers")
     public ResponseEntity<List<UserDto>> getAllUsers(){

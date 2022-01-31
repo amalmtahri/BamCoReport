@@ -14,13 +14,13 @@ import java.util.Date;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "display_name", nullable = false)
-    private String displayName;
+    @Column(name = "displayname", nullable = false)
+    private String displayname;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -28,37 +28,37 @@ public class Role {
 
     @ManyToOne
     @JoinColumn(name = "createdby")
-    private User createdBy;
+    private User createdby;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date creationDate;
+    @Column(name = "createdat", nullable = false, updatable = false)
+    private Date creationdate;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
-    private Date lastUpdate;
+    @Column(name = "updatedat")
+    private Date lastupdate;
 
-    public Role(Long id, String name, String displayName, String description, User createdBy) {
-        this.id = id;
-        this.name = name;
-        this.displayName = displayName;
-        this.description = description;
-        this.createdBy = createdBy;
-    }
 
     public Role() {
-
     }
 
-    public void setId(Long id) {
+    public Role(long id, String name, String displayname, String description, User createdby, Date creationdate, Date lastupdate) {
         this.id = id;
+        this.name = name;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
     }
 
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -68,15 +68,13 @@ public class Role {
         this.name = name;
     }
 
-
-    public String getDisplayName() {
-        return displayName;
+    public String getDisplayname() {
+        return displayname;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
-
 
     public String getDescription() {
         return description;
@@ -86,42 +84,41 @@ public class Role {
         this.description = description;
     }
 
-    public User getCreatedBy() {
-        return createdBy;
+    public User getCreatedby() {
+        return createdby;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedby(User createdby) {
+        this.createdby = createdby;
     }
 
-
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
-
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Date getLastupdate() {
+        return lastupdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
+
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", displayName='" + displayName + '\'' +
+                ", displayname='" + displayname + '\'' +
                 ", description='" + description + '\'' +
-                ", createdBy=" + createdBy +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
+                ", createdby=" + createdby +
+                ", creationdate=" + creationdate +
+                ", lastupdate=" + lastupdate +
                 '}';
     }
 }

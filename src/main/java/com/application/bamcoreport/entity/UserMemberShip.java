@@ -11,96 +11,99 @@ public class UserMemberShip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid")
-    private User userId;
+    @ManyToOne()
+    @JoinColumn(name="userid", referencedColumnName = "id")
+    private User userid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "roleid")
-    private Role roleId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groupid")
-    private Group groupId;
+    @ManyToOne()
+    @JoinColumn(name="roleid", referencedColumnName = "id")
+    private Role roleid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assignedby")
-    private User assignedBy;
+    @ManyToOne()
+    @JoinColumn(name="groupid", referencedColumnName = "id")
+    private Group groupid;
+
+    @ManyToOne()
+    @JoinColumn(name="assignedby", referencedColumnName = "id")
+    private User assignedby;
 
     @CreatedDate
-    @Column(name = "assigned_date", nullable = false, updatable = false)
-    private Date assignedDate;
-
-    public UserMemberShip(Long id, User userId, Role roleId, Group groupId, User assignedBy) {
-        this.id = id;
-        this.userId = userId;
-        this.roleId = roleId;
-        this.groupId = groupId;
-        this.assignedBy = assignedBy;
-    }
+    @Column(name = "assigneddate", nullable = false)
+    private Date assigneddate;
 
     public UserMemberShip() {
     }
 
-    public void setId(Long id) {
+    public UserMemberShip(long id, User userid, Role roleid, Group groupid, User assignedby, Date assigneddate) {
         this.id = id;
+        this.userid = userid;
+        this.roleid = roleid;
+        this.groupid = groupid;
+        this.assignedby = assignedby;
+        this.assigneddate = assigneddate;
     }
 
-    public Long getId() {
+
+    public long getId() {
         return id;
     }
 
-    public User getUserId() {
-        return userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public User getUserid() {
+        return this.userid;
     }
 
-    public Role getRoleId() {
-        return roleId;
+    public void setUserid(User userid) {
+        this.userid = userid;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public Role getRoleid() {
+        return roleid;
     }
 
-    public Group getGroupId() {
-        return groupId;
+    public void setRoleid(Role roleid) {
+        this.roleid = roleid;
     }
 
-    public void setGroupId(Group groupId) {
-        this.groupId = groupId;
+    public Group getGroupid() {
+        return groupid;
     }
 
-    public User getAssignedBy() {
-        return assignedBy;
+    public void setGroupid(Group groupid) {
+        this.groupid = groupid;
     }
 
-    public void setAssignedBy(User assignedBy) {
-        this.assignedBy = assignedBy;
+    public User getAssignedby() {
+        return assignedby;
     }
 
-    public Date getAssignedDate() {
-        return assignedDate;
+    public void setAssignedby(User assignedby) {
+        this.assignedby = assignedby;
     }
 
-    public void setAssignedDate(Date assignedDate) {
-        this.assignedDate = assignedDate;
+    public Date getAssigneddate() {
+        return assigneddate;
+    }
+
+    public void setAssigneddate(Date assigneddate) {
+        this.assigneddate = assigneddate;
     }
 
     @Override
     public String toString() {
         return "UserMemberShip{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", roleId=" + roleId +
-                ", groupId=" + groupId +
-                ", assignedBy=" + assignedBy +
-                ", assignedDate=" + assignedDate +
+                ", userid=" + userid +
+                ", roleid=" + roleid +
+                ", groupid=" + groupid +
+                ", assignedby=" + assignedby +
+                ", assigneddate=" + assigneddate +
                 '}';
     }
 }
