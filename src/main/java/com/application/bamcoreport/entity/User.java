@@ -2,6 +2,7 @@ package com.application.bamcoreport.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -15,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JsonIgnore
     @OneToOne(targetEntity = UserContactInfo.class, mappedBy = "userId")
@@ -42,11 +43,13 @@ public class User {
     @Column(name = "job_title", nullable = false)
     private String jobTitle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne()
     @JoinColumn(name = "manageruserid")
     private User managerUserId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne()
     @JoinColumn(name = "createdby")
     private User createdBy;
 
