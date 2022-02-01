@@ -1,7 +1,9 @@
 package com.application.bamcoreport.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -44,11 +46,15 @@ public class User {
     @Column(name = "jobtitle", nullable = false)
     private String jobtitle;
 
-    @ManyToOne(optional = false,fetch=FetchType.LAZY)
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "manageruserid")
     private User manageruserid;
 
-    @ManyToOne(optional = false,fetch=FetchType.LAZY)
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "createdby")
     private User createdby;
 
