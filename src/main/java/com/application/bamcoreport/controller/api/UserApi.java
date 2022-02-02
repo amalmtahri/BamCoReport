@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Tag(name = "users", description = "the User API")
 public interface UserApi {
-    @PostMapping("/addUser")
+    @PostMapping(value="/addUser",consumes = MediaType.APPLICATION_JSON_VALUE)
     //anotation de swagger pour ajouter une description du fonction
     @Operation(summary = "Add a new user", description = "This method for added user", tags = { "users" })
     @ApiResponses(value = {
