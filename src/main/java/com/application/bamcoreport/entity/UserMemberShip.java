@@ -46,6 +46,15 @@ public class UserMemberShip {
         this.assigneddate = assigneddate;
     }
 
+    public UserMemberShip( User userid, Role roleid, Group groupid, User assignedby, Date assigneddate) {
+        this.userid = userid;
+        this.roleid = roleid;
+        this.groupid = groupid;
+        this.assignedby = assignedby;
+        this.assigneddate = assigneddate;
+    }
+
+
 
     public long getId() {
         return id;

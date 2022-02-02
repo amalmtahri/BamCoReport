@@ -55,7 +55,7 @@ public class UserMembershipService implements IUserMembership{
 
     public String deleteUserMembership(long id){
          repository.deleteById(id);
-         return "UserMembership removed";
+         return "UserMembership removed !!";
     }
 
     public UserMemberShip updateUserMembership(UserMemberShip userMemberShip){
