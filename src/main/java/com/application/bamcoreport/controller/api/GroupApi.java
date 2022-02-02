@@ -35,7 +35,7 @@ public interface GroupApi {
             @ApiResponse(responseCode  = "200", description = "Success Response"),
             @ApiResponse(responseCode  = "400", description = "object group invalid")
     })
-    Group addGroup(@RequestBody Group group);
+    GroupDto addGroup(@RequestBody GroupDto groupDto);
 
     @PutMapping("/updateGroup")
     @Operation(summary = "update Group", description = "update data of group", tags = { "groups" })

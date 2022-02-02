@@ -1,7 +1,6 @@
 package com.application.bamcoreport.service;
 
 import com.application.bamcoreport.DTO.models.RoleDto;
-import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Role;
 import com.application.bamcoreport.entity.User;

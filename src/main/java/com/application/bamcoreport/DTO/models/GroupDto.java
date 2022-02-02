@@ -29,6 +29,17 @@ public class GroupDto {
         this.lastupdate = lastupdate;
     }
 
+
+    public GroupDto( String name, String parentpath, String displayname, String description, User createdby, Date creationdate, Date lastupdate) {
+        this.name = name;
+        this.parentpath = parentpath;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
+    }
+
     public long getId() {
         return id;
     }

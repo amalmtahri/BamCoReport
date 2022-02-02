@@ -30,8 +30,8 @@ public class GroupController implements GroupApi {
     }
 
     @Override
-    public Group addGroup(@RequestBody Group group){
-        return service.saveGroup(group);
+    public GroupDto addGroup(@RequestBody GroupDto groupDto){
+        return service.saveGroup(groupDto);
     }
 
     @Override

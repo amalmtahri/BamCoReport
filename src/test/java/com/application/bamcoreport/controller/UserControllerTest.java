@@ -2,25 +2,16 @@ package com.application.bamcoreport.controller;
 
 import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.entity.User;
-import com.application.bamcoreport.repository.UserRepository;
-import com.application.bamcoreport.service.UserService;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.LocalDateAssert;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

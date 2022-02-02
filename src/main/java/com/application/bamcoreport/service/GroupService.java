@@ -5,12 +5,13 @@ import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Group;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.repository.GroupRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service @Slf4j
 public class GroupService implements IGroupService {
 
     @Autowired
@@ -27,12 +28,16 @@ public class GroupService implements IGroupService {
         return groupMapping.convertListToListDto(groups, GroupDto.class);
     }
 
-    public Group saveGroup(Group group){
-
-        User getUserData = userService.getUserById(group.getCreatedby().getId());
-        group.setCreatedby(getUserData);
-        return repository.save(group);
-
+    public GroupDto saveGroup(GroupDto groupDto){
+        // convert DTO to entity
+        Group groupRequest = groupMapping.convertToEntity(groupDto,Group.class);
+        User getUserData = userService.getUserById(groupRequest.getCreatedby().getId());
+        groupRequest.setCreatedby(getUserData);
+        log.info("Saving new role {} to database",groupRequest.getId());
+        Group group = repository.save(groupRequest);
+        // convert entity to DTO
+        GroupDto groupResponse = groupMapping.convertToDto(group, GroupDto.class);
+        return groupResponse;
     }
 
 
