@@ -22,13 +22,7 @@ class BamcoReportApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    void testMethod(){
-        User user = new User(1,true,"amalmtahri","amal","amal","mtahri","developer","developer web",null,null);
-        User result = userRepository.save(user);
-        assertThat(result.getFirstname()).isEqualTo("amal");
 
-    }
 
 
 }

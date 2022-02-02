@@ -83,7 +83,7 @@ public class User {
     }
 
 
-    public User(long id, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby) {
+    public User(long id, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby, Date creationdate, Date lastupdate) {
         this.id = id;
         this.enabled = enabled;
         this.username = username;
@@ -94,6 +94,8 @@ public class User {
         this.jobtitle = jobtitle;
         this.manageruserid = manageruserid;
         this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
     }
 
     public long getId() {

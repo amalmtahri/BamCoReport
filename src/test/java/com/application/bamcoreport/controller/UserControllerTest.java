@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,17 +29,12 @@ class UserControllerTest {
 
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserService service;
-
-    @Autowired
     private UserController userController;
 
     @Test
     void testSaveUser() {
-        UserDto userDto = new UserDto(true,"amalmthr","amalooo","amal","mtahri","developpement","developer web",new User(),new User(), null,null);
+        Date date = new Date();
+        UserDto userDto = new UserDto(true,"amalmthr","amalooo","amal","mtahri","developpement","developer web",new User(),new User(), date,null);
         UserDto saveUser = userController.saveUser(userDto);
         assertThat(saveUser).isNotNull();
     }
@@ -57,11 +54,16 @@ class UserControllerTest {
 
     @Test
     void testUpdateUser() {
+        Date date = new Date();
+        User user = new User(32, true,"update","amalooo","amal","mtahri","developpement","developer web",new User(),new User(), date,null);
+        User updateUser = userController.updateUser(user);
+        assertThat(updateUser).isNotNull();
+
     }
 
     @Test
     void testDeleteUser() {
-        String deleteUser = userController.deleteUser(31L);
+        String deleteUser = userController.deleteUser(30L);
         assertThat(deleteUser).isEqualTo("User removed !!");
     }
 }
