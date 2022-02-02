@@ -31,6 +31,14 @@ public class RoleDto {
         this.creationdate = creationdate;
         this.lastupdate = lastupdate;
     }
+    public RoleDto(String name, String displayname, String description, User createdby, Date creationdate, Date lastupdate) {
+        this.name = name;
+        this.displayname = displayname;
+        this.description = description;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
+    }
 
 
     public long getId() {

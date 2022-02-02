@@ -27,7 +27,7 @@ public interface RoleApi {
             @ApiResponse(responseCode  = "200", description = "Success Response"),
             @ApiResponse(responseCode  = "400", description = "object role invalid")
     })
-    Role saveRole(@RequestBody Role role);
+    RoleDto saveRole(@RequestBody RoleDto roleDto);
 
     @GetMapping("/findById/{id}")
     @Operation(summary = "Get role by id", description = "search with id role", tags = { "roles" })

@@ -2,6 +2,7 @@ package com.application.bamcoreport.controller;
 
 
 import com.application.bamcoreport.DTO.models.RoleDto;
+import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.controller.api.RoleApi;
 import com.application.bamcoreport.entity.Role;
 import com.application.bamcoreport.service.RoleService;
@@ -26,8 +27,8 @@ public class RoleController implements RoleApi {
     }
 
     @Override
-    public Role saveRole(@RequestBody Role role){
-        return service.saveRole(role);
+    public RoleDto saveRole(@RequestBody RoleDto roleDto){
+        return service.saveRole(roleDto);
     }
 
     @Override
