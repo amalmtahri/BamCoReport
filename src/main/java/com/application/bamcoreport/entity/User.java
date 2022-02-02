@@ -82,6 +82,20 @@ public class User {
         this.lastupdate = lastupdate;
     }
 
+
+    public User(long id, boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby) {
+        this.id = id;
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.jobtitle = jobtitle;
+        this.manageruserid = manageruserid;
+        this.createdby = createdby;
+    }
+
     public long getId() {
         return id;
     }
