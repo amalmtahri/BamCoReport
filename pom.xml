@@ -76,6 +76,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.18.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.onpositive.aml</groupId>
             <artifactId>org.aml.apimodel</artifactId>
             <version>0.11</version>
