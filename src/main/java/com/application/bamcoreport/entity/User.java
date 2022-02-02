@@ -67,4 +67,21 @@ public class User {
     @Column(name = "updated_at")
     private Date lastUpdate;
 
+    public User(User user){
+        this.id= user.getId();
+        this.userContactInfo = user.getUserContactInfo();
+        this.enabled = user.isEnabled();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.title = user.getTitle();
+        this.jobTitle = user.getJobTitle();
+        this.managerUserId = user.getManagerUserId();
+        this.createdBy = user.getCreatedBy();
+        this.creationDate = user.getCreationDate();
+        this.lastUpdate = user.getLastUpdate();
+    }
+
+
 }

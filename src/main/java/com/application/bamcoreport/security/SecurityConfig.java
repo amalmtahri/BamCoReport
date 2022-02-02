@@ -1,22 +1,31 @@
 package com.application.bamcoreport.security;
 
+import com.application.bamcoreport.filter.CustomAuthenticationFilter;
+import com.application.bamcoreport.filter.CustomAuthorisationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-//@Configuration
-//@EnableWebSecurity
+import static org.aspectj.weaver.tools.PointcutPrimitive.GET;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
+@Configuration
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    UserDetailsService userDetailsService;
+
+    public final UserDetailsService userDetailsService;
 
     public final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
@@ -26,6 +35,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+
+        CustomAuthenticationFilter customAuthenticationFilter=new CustomAuthenticationFilter(authenticationManagerBean());
+        customAuthenticationFilter.setFilterProcessesUrl("/api/login");
+        http.csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(STATELESS);
+        //change it after add roles
+       // http.authorizeRequests().antMatchers("GET","/api/user/**").hasAnyAuthority("ROLE_USER");
+        //http.authorizeRequests().antMatchers("GET","/api/user/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().anyRequest().authenticated();
+        http.addFilter(customAuthenticationFilter);
+        http.addFilterBefore(new CustomAuthorisationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean()throws Exception{
+        return  super.authenticationManagerBean();
     }
 }
