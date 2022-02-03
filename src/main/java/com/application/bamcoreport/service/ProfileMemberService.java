@@ -27,12 +27,17 @@ public class ProfileMemberService {
 
     @Autowired
     ProfileService profileService;
+    @Autowired
+    IMapClassWithDto<Profile, ProfileDto> profileMapping;
 
     @Autowired
-    IMapClassWithDto<ProfileMember, ProfileMemberDto> profileMapping;
+    IMapClassWithDto<ProfileMember, ProfileMemberDto> profileMemberMapper;
 
-    public ProfileMember saveProfile(ProfileMember profileMember){
-        return repository.save(profileMember);
+    public ProfileMemberDto saveProfile(ProfileMemberDto profileMemberdto){
+
+        ProfileMember profileMember = profileMemberMapper.convertToEntity(profileMemberdto,ProfileMember.class);
+        ProfileMember pm= repository.save(profileMember);
+         return profileMemberMapper.convertToDto(pm, ProfileMemberDto.class);
     }
 
     public List<ProfileMember> saveProfiles(List<ProfileMember> profilesMembers){
@@ -41,11 +46,14 @@ public class ProfileMemberService {
 
     public List<ProfileMemberDto> getProfileMembers() {
         List<ProfileMember> profilesMembers = repository.findAll();
-        return profileMapping.convertListToListDto(profilesMembers, ProfileMemberDto.class);
+        return profileMemberMapper.convertListToListDto(profilesMembers, ProfileMemberDto.class);
     }
 
-    public ProfileMember getProfileMemberById(Long id){
-        return repository.findById(id).orElse(null);
+    public ProfileMemberDto getProfileMemberById(Long id){
+
+        ProfileMember profileM= repository.findById(id).orElse(null);
+        return profileMemberMapper.convertToDto(profileM, ProfileMemberDto.class);
+
     }
 
     public String deleteProfileMember(Long id){
@@ -53,17 +61,20 @@ public class ProfileMemberService {
         return "ProfileMember removed !!";
     }
 
-    public  ProfileMember updateProfileMember(ProfileMember profileMember){
+    public  ProfileMemberDto updateProfileMember(ProfileMemberDto profileMemberdto){
+        ProfileMember profileMember=profileMemberMapper.convertToEntity(profileMemberdto,ProfileMember.class);
         ProfileMember existingProfileMember = repository.findById(profileMember.getId()).orElse(null);
         if(existingProfileMember!=null){
             User userC=userService.getUserById(profileMember.getUserId().getId());
             Role role=roleService.getRoleById(profileMember.getRoleId().getId());
-            Profile profile=profileService.getProfileById(profileMember.getProfileId().getId());
+            ProfileDto profiledto=profileService.getProfileById(profileMember.getProfileId().getId());
+            Profile profile = profileMapping.convertToEntity(profiledto,Profile.class);
             profileMember.setProfileId(profile);
             profileMember.setRoleId(role);
             profileMember.setUserId(userC);
-            return  repository.save(profileMember);
+            ProfileMember profileMember1=  repository.save(profileMember);
+            return profileMemberMapper.convertToDto(profileMember1, ProfileMemberDto.class);
         }
-        return profileMember;
+        return profileMemberMapper.convertToDto(profileMember, ProfileMemberDto.class);
     }
 }

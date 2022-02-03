@@ -19,7 +19,7 @@ public class ProfileMemberController {
     private ProfileMemberService service;
 
     @PostMapping("/add")
-    public ProfileMember saveProfileMember(@RequestBody ProfileMember profileMember){
+    public ProfileMemberDto saveProfileMember(@RequestBody ProfileMemberDto profileMember){
         return service.saveProfile(profileMember);
     }
 
@@ -34,7 +34,7 @@ public class ProfileMemberController {
         return ResponseEntity.ok(profileMemberDto);
     }
     @GetMapping("/findBy/{id}")
-    public ProfileMember findProfileMember(@PathVariable Long id){
+    public ProfileMemberDto findProfileMember(@PathVariable Long id){
         return service.getProfileMemberById(id);
     }
 
@@ -45,7 +45,7 @@ public class ProfileMemberController {
     }
 
     @PutMapping("/update")
-    public ProfileMember updateUser(@RequestBody ProfileMember profileMember){
+    public ProfileMemberDto updateUser(@RequestBody ProfileMemberDto profileMember){
         return service.updateProfileMember(profileMember);
     }
 }

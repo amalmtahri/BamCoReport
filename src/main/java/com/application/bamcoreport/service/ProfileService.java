@@ -24,13 +24,14 @@ public class ProfileService {
     @Autowired
     IMapClassWithDto<Profile, ProfileDto> profileMapping;
 
-    public Profile saveProfile(Profile profile){
-
-        User user=userService.getUserById(profile.getCreatedBy().getId());
-        profile.setCreatedBy(user);
-        User userupdate=userService.getUserById(profile.getLastUpdateBy().getId());
-        profile.setLastUpdateBy(userupdate);
-        return repository.save(profile);
+    public ProfileDto saveProfile(ProfileDto profiledto){
+        Profile profileRequest = profileMapping.convertToEntity(profiledto,Profile.class);
+        User user=userService.getUserById(profileRequest.getCreatedBy().getId());
+        profileRequest.setCreatedBy(user);
+        User userdata=userService.getUserById(profileRequest.getLastUpdateBy().getId());
+        profileRequest.setLastUpdateBy(userdata);
+        Profile profile= repository.save(profileRequest);
+        return profileMapping.convertToDto(profile, ProfileDto.class);
     }
 
     public List<Profile> saveProfiles(List<Profile> profiles){
@@ -42,8 +43,9 @@ public class ProfileService {
         return profileMapping.convertListToListDto(profiles,ProfileDto.class);
     }
 
-    public Profile getProfileById(Long id){
-        return repository.findById(id).orElse(null);
+    public ProfileDto getProfileById(Long id){
+        Profile profile= repository.findById(id).orElse(null);
+        return profileMapping.convertToDto(profile, ProfileDto.class);
     }
 
     public String deleteProfile(Long id){
@@ -51,15 +53,17 @@ public class ProfileService {
         return "Profile removed !!";
     }
 
-    public  Profile updateProfile(Profile profile){
+    public  ProfileDto updateProfile(ProfileDto profileDto){
+        Profile profile = profileMapping.convertToEntity(profileDto,Profile.class);
         Profile existingProfile = repository.findById(profile.getId()).orElse(null);
         if(existingProfile!=null){
             User userC=userService.getUserById(profile.getCreatedBy().getId());
             User userL=userService.getUserById(profile.getLastUpdateBy().getId());
             profile.setCreatedBy(userC);
             profile.setLastUpdateBy(userL);
-            return  repository.save(profile);
+            Profile nprofile=  repository.save(profile);
+            return profileMapping.convertToDto(nprofile, ProfileDto.class);
         }
-        return profile;
+        return profileMapping.convertToDto(profile, ProfileDto.class);
     }
 }

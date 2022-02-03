@@ -21,7 +21,7 @@ public class UserContactInfo implements Serializable {
 
 
     @JsonIgnore
-    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "userid", referencedColumnName = "id")
     private User userId;
 

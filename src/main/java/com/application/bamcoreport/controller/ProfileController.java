@@ -18,7 +18,7 @@ public class ProfileController {
     private ProfileService service;
 
     @PostMapping("/add")
-    public Profile saveProfile(@RequestBody Profile profile){
+    public ProfileDto saveProfile(@RequestBody ProfileDto profile){
         return service.saveProfile(profile);
     }
 
@@ -33,7 +33,7 @@ public class ProfileController {
         return ResponseEntity.ok(profileDto);
     }
     @GetMapping("/findBy/{id}")
-    public Profile findProfile(@PathVariable Long id){
+    public ProfileDto findProfile(@PathVariable Long id){
         return service.getProfileById(id);
     }
 
@@ -44,7 +44,7 @@ public class ProfileController {
     }
 
     @PutMapping("/update")
-    public Profile updateUser(@RequestBody Profile profile){
+    public ProfileDto updateUser(@RequestBody ProfileDto profile){
         return service.updateProfile(profile);
     }
 }

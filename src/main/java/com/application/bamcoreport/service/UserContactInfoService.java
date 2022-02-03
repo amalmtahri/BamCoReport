@@ -1,8 +1,10 @@
 package com.application.bamcoreport.service;
 
+import com.application.bamcoreport.DTO.models.ProfileDto;
 import com.application.bamcoreport.DTO.models.UserContactInfoDto;
 import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Profile;
+import com.application.bamcoreport.entity.ProfileMember;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.entity.UserContactInfo;
 import com.application.bamcoreport.repository.UserContactInfoRepository;
@@ -18,10 +20,17 @@ public class UserContactInfoService {
     private UserContactInfoRepository repository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     IMapClassWithDto<UserContactInfo, UserContactInfoDto> UserContactInfoMapping;
 
-    public UserContactInfo saveUserContactInfo(UserContactInfo UserContactInfo){
-        return repository.save(UserContactInfo);
+    public UserContactInfoDto saveUserContactInfo(UserContactInfoDto UserContactInfoDto){
+        UserContactInfo userContactInfo=UserContactInfoMapping.convertToEntity(UserContactInfoDto,UserContactInfo.class);
+        User user=userService.getUserById(userContactInfo.getUserId().getId());
+        userContactInfo.setUserId(user);
+        userContactInfo= repository.save(userContactInfo);
+        return  UserContactInfoMapping.convertToDto(userContactInfo, UserContactInfoDto.class);
     }
 
     public List<UserContactInfo> saveUserContactInfos(List<UserContactInfo> userContactInfos){
@@ -33,8 +42,10 @@ public class UserContactInfoService {
         return UserContactInfoMapping.convertListToListDto(userContactInfos,UserContactInfoDto.class);
     }
 
-    public UserContactInfo getUserContactInfoById(Long id){
-        return repository.findById(id).orElse(null);
+    public UserContactInfoDto getUserContactInfoById(Long id){
+
+        UserContactInfo userContactInfo= repository.findById(id).orElse(null);
+        return  UserContactInfoMapping.convertToDto(userContactInfo, UserContactInfoDto.class);
     }
 
     public String deleteUserContactInfo(Long id){
@@ -42,11 +53,15 @@ public class UserContactInfoService {
         return "UserContactInfo removed !!";
     }
 
-    public UserContactInfo updateUserContactInfo(UserContactInfo userContactInfo){
+    public UserContactInfoDto updateUserContactInfo(UserContactInfoDto userContactInfoDto){
+        UserContactInfo userContactInfo=UserContactInfoMapping.convertToEntity(userContactInfoDto,UserContactInfo.class);
         UserContactInfo existingUserContactInfo = repository.findById(userContactInfo.getId()).orElse(null);
         if(existingUserContactInfo!=null){
-            return  repository.save(userContactInfo);
+            User user=userService.getUserById(userContactInfo.getUserId().getId());
+            userContactInfo.setUserId(user);
+            userContactInfo=  repository.save(userContactInfo);
+            return  UserContactInfoMapping.convertToDto(userContactInfo, UserContactInfoDto.class);
         }
-        return userContactInfo;
+        return  UserContactInfoMapping.convertToDto(userContactInfo, UserContactInfoDto.class);
     }
 }

@@ -19,7 +19,7 @@ public class UserContactInfoController {
     private UserContactInfoService service;
 
     @PostMapping("/add")
-    public UserContactInfo saveUserContactInfo(@RequestBody UserContactInfo userContactInfo){
+    public UserContactInfoDto saveUserContactInfo(@RequestBody UserContactInfoDto userContactInfo){
         return service.saveUserContactInfo(userContactInfo);
     }
 
@@ -34,7 +34,7 @@ public class UserContactInfoController {
         return ResponseEntity.ok(userDto);
     }
     @GetMapping("/findBy/{id}")
-    public UserContactInfo findUserContactInfo(@PathVariable Long id){
+    public UserContactInfoDto findUserContactInfo(@PathVariable Long id){
         return service.getUserContactInfoById(id);
     }
 
@@ -46,7 +46,7 @@ public class UserContactInfoController {
 
 
     @PutMapping("/update")
-    public UserContactInfo updateUser(@RequestBody UserContactInfo userContactInfo){
+    public UserContactInfoDto updateUser(@RequestBody UserContactInfoDto userContactInfo){
         return service.updateUserContactInfo(userContactInfo);
     }
 
