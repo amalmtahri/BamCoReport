@@ -18,7 +18,6 @@ public class UserService implements IUserService{
     @Autowired
     IMapClassWithDto<User, UserDto> userMapping;
 
-
     public UserDto saveUser(UserDto userdto){
         // convert DTO to entity
         User userRequest = userMapping.convertToEntity(userdto,User.class);

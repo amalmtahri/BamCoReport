@@ -33,7 +33,6 @@ class GroupControllerTest {
     void testFindGroupById() {
         Group group = groupController.findGroupById(1L);
         assertThat(group).isNotNull();
-
     }
 
     @Test
@@ -50,13 +49,11 @@ class GroupControllerTest {
         Group group = new Group(1,"group test unitaire","test","test group","description",new User(),date,null);
         Group updateGroup = groupController.updateGroup(group);
         assertThat(updateGroup).isNotNull();
-
     }
 
     @Test
     void deleteGroup() {
         String deleteGroup = groupController.deleteGroup(6L);
         assertThat(deleteGroup).isEqualTo("Group removed !!");
-
     }
 }

@@ -19,9 +19,4 @@ public class BamcoReportApplication {
         return new ModelMapper();
     }
 
-
-
-
-
-
 }
