@@ -25,6 +25,7 @@ public class RoleService implements IRoleService{
     @Override
     public List<RoleDto> getRoles() {
         List<Role> roles = repository.findAll();
+        log.info("Get all roles");
         return roleMapping.convertListToListDto(roles, RoleDto.class);
     }
 
@@ -42,11 +43,13 @@ public class RoleService implements IRoleService{
     }
 
     public Role getRoleById(long id){
+        log.info("Get role {}",id);
         return repository.findById(id).orElse(null);
     }
 
     public String deleteRole(long id){
         repository.deleteById(id);
+        log.info("Delete role {} ", id);
         return "Role removed !!";
     }
 
@@ -58,6 +61,7 @@ public class RoleService implements IRoleService{
             existingRole.setDisplayname(role.getDisplayname());
             existingRole.setDescription(role.getDescription());
             existingRole.setCreatedby(getUserData);
+            log.info("Update role {}", role.getName());
         }
         return repository.save(existingRole);
     }

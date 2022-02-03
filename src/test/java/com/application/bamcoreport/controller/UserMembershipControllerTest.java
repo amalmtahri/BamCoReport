@@ -1,7 +1,5 @@
 package com.application.bamcoreport.controller;
 
-import com.application.bamcoreport.DTO.models.GroupDto;
-import com.application.bamcoreport.DTO.models.RoleDto;
 import com.application.bamcoreport.DTO.models.UserMemberShipDto;
 import com.application.bamcoreport.entity.Group;
 import com.application.bamcoreport.entity.Role;
@@ -18,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

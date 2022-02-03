@@ -25,6 +25,7 @@ public class GroupService implements IGroupService {
     @Override
     public List<GroupDto> getGroups() {
         List<Group> groups = repository.findAll();
+        log.info("Get all groups");
         return groupMapping.convertListToListDto(groups, GroupDto.class);
     }
 
@@ -33,7 +34,7 @@ public class GroupService implements IGroupService {
         Group groupRequest = groupMapping.convertToEntity(groupDto,Group.class);
         User getUserData = userService.getUserById(groupRequest.getCreatedby().getId());
         groupRequest.setCreatedby(getUserData);
-        log.info("Saving new role {} to database",groupRequest.getId());
+        log.info("Saving new group {} to database",groupRequest.getId());
         Group group = repository.save(groupRequest);
         // convert entity to DTO
         GroupDto groupResponse = groupMapping.convertToDto(group, GroupDto.class);
@@ -42,12 +43,14 @@ public class GroupService implements IGroupService {
 
 
     public Group getGroupById(long id){
+        log.info("Get data of group {}",id);
         return repository.findById(id).orElse(null);
     }
 
 
     public String deleteGroup(long id){
         repository.deleteById(id);
+        log.info("Get group {}",id);
         return "Group removed !!";
     }
 
@@ -60,6 +63,9 @@ public class GroupService implements IGroupService {
             existingGroup.setDisplayname(group.getDisplayname());
             existingGroup.setDescription(group.getDescription());
             existingGroup.setCreatedby(getUserData);
+            log.info("Update data of group {}",group.getName());
+
+
         }
         return repository.save(existingGroup);
     }

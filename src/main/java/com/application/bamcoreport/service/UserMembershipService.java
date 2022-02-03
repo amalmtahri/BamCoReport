@@ -7,12 +7,13 @@ import com.application.bamcoreport.entity.Role;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.entity.UserMemberShip;
 import com.application.bamcoreport.repository.UserMembershipRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service @Slf4j
 public class UserMembershipService implements IUserMembership{
 
     @Autowired
@@ -33,6 +34,7 @@ public class UserMembershipService implements IUserMembership{
 
     @Override
     public List<UserMemberShipDto> getUserMemberships() {
+        log.info("Get all userMemberships");
         List<UserMemberShip> userMemberShips = repository.findAll();
         return userMembershipMapping.convertListToListDto(userMemberShips, UserMemberShipDto.class);
     }
@@ -46,6 +48,7 @@ public class UserMembershipService implements IUserMembership{
         userMemberShip.setGroupid(getGroupData);
         User getAssignedBy = userService.getUserById(userMemberShip.getAssignedby().getId());
         userMemberShip.setAssignedby(getAssignedBy);
+        log.info("Saving a userMembership into database");
         return repository.save(userMemberShip);
     }
 
@@ -54,7 +57,8 @@ public class UserMembershipService implements IUserMembership{
     }
 
     public String deleteUserMembership(long id){
-         repository.deleteById(id);
+        log.info("Delete userMembership {}", id);
+        repository.deleteById(id);
          return "UserMembership removed !!";
     }
 
@@ -70,6 +74,8 @@ public class UserMembershipService implements IUserMembership{
         existingUserMembership.setRoleid(getRoleData);
         existingUserMembership.setGroupid(getGroupData);
         existingUserMembership.setAssignedby(getAssignedBy);
+        log.info("Update data of userMembership");
+
         }
         return repository.save(existingUserMembership);
     }
