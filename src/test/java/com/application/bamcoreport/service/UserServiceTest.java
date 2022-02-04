@@ -31,10 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
-@ExtendWith(SpringExtension.class)
-@ExtendWith(MockitoExtension.class)
 @SpringBootTest
-@RunWith(SpringRunner.class)
 class UserServiceTest {
 
     private UserService userService;
@@ -45,6 +42,7 @@ class UserServiceTest {
     IMapClassWithDto<User, UserDto> userMapping;
 
     @BeforeEach
+    @Disabled
     public void setup() {
         userService = new UserService(userRepository);
     }
@@ -86,7 +84,7 @@ class UserServiceTest {
     @Test
     public void testSaveUser(){
         Date date = new Date();
-        User user1 = new User(true, "userA", "userA", "userA", "userA", "developpement", "developer web", new User(), new User(), date, null);
+        User user1 = new User(1,true, "userA", "userA", "userA", "userA", "developpement", "developer web", new User(), new User(), date, null);
         //pass to mock
         when(userRepository.save(eq(user1))).thenReturn(user1);
         //Assertions
@@ -96,7 +94,7 @@ class UserServiceTest {
     @Test
     public void testDeleteUser(){
         Date date = new Date();
-        User user1 = new User(true, "userA", "userA", "userA", "userA", "developpement", "developer web", new User(), new User(), date, null);
+        User user1 = new User(1,true, "userA", "userA", "userA", "userA", "developpement", "developer web", new User(), new User(), date, null);
         userRepository.deleteById(user1.getId());
         assertThat(userService.deleteUser(user1.getId())).isEqualTo("User removed !!");
     }

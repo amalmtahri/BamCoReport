@@ -99,20 +99,6 @@ public class User {
         this.creationdate = creationdate;
         this.lastupdate = lastupdate;
     }
-    public User( boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby, Date creationdate, Date lastupdate) {
-        this.enabled = enabled;
-        this.username = username;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.title = title;
-        this.jobtitle = jobtitle;
-        this.manageruserid = manageruserid;
-        this.createdby = createdby;
-        this.creationdate = creationdate;
-        this.lastupdate = lastupdate;
-    }
-
 
     public long getId() {
         return id;
