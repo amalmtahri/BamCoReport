@@ -1,5 +1,9 @@
 package com.application.bamcoreport.DTO.models;
 
+import com.application.bamcoreport.entity.User;
+import com.sun.istack.NotNull;
+import lombok.NonNull;
+
 import java.sql.Date;
 
 public class ProfileDto {
@@ -8,22 +12,24 @@ public class ProfileDto {
     private String name;
     private  String description;
     private Date creationDate;
-    private long createdBy;
+
+    private User createdBy;
     private Date lastUpdateDate;
-    private long lastUpdateBy;
+    private User lastUpdateBy;
 
     public ProfileDto() {
     }
 
-    public ProfileDto(long id, boolean isDefault, String name, String description, Date creationDate, long createdBy, Date lastUpdateDate, long lastUpdateBy) {
+
+    public ProfileDto(long id, boolean isDefault, String name, String description, Date creationDate, User createdby, Date lastUpdateDate, User lastupdateby) {
         this.id = id;
         this.isDefault = isDefault;
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
-        this.createdBy = createdBy;
+        this.createdBy = createdby;
         this.lastUpdateDate = lastUpdateDate;
-        this.lastUpdateBy = lastUpdateBy;
+        this.lastUpdateBy = lastupdateby;
     }
 
     public long getId() {
@@ -66,13 +72,6 @@ public class ProfileDto {
         this.creationDate = creationDate;
     }
 
-    public long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
-    }
 
     public Date getLastUpdateDate() {
         return lastUpdateDate;
@@ -82,11 +81,20 @@ public class ProfileDto {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public long getLastUpdateBy() {
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public User getLastUpdateBy() {
         return lastUpdateBy;
     }
 
-    public void setLastUpdateBy(long lastUpdateBy) {
+    public void setLastUpdateBy(User lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
 }

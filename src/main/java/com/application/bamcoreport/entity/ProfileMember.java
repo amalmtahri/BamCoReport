@@ -1,122 +1,49 @@
 package com.application.bamcoreport.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "profilemembers")
 public class ProfileMember {
 
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="profileid" ,referencedColumnName = "id")
+    private Profile profileId;
 
     @ManyToOne()
-    @JoinColumn(name="profiles_id")
-    private Profile profile;
+    @JoinColumn(name="usersid" ,referencedColumnName = "id")
+    private  User userId;
 
     @ManyToOne()
-    @JoinColumn(name="users_id")
-    private  User user;
+    @JoinColumn(name="groupeid" ,referencedColumnName = "id")
+    private  Group groupeId;
 
     @ManyToOne()
-    @JoinColumn(name="groupes_id")
-    private  Group group;
-
-    @ManyToOne()
-    @JoinColumn(name="roles_id")
-    private Role role;
+    @JoinColumn(name="roleid",referencedColumnName = "id")
+    private Role roleId;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "creationdate", nullable = false, updatable = false)
     private Date creationDate;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
+    @Column(name = "lastupdate")
     private Date lastUpdate;
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "ProfileMember{" +
-                "id=" + id +
-                ", profile=" + profile +
-                ", user=" + user +
-                ", group=" + group +
-                ", role=" + role +
-                ", creationDate=" + creationDate +
-                ", lastUpdate=" + lastUpdate +
-                '}';
-    }
 }

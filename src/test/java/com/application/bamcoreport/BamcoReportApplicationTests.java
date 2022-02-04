@@ -22,7 +22,4 @@ class BamcoReportApplicationTests {
     void contextLoads() {
     }
 
-
-
-
 }

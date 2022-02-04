@@ -1,8 +1,8 @@
 package com.application.bamcoreport.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,14 +10,12 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "profiles")
 public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "isdefault", nullable = false)
     private  boolean isDefault;
@@ -32,28 +30,42 @@ public class Profile {
     @Column(name = "creationdate", nullable = false, updatable = false)
     private Date creationDate;
 
-    @ManyToOne()
-    @JoinColumn(name="users_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private User createdBy;
-
     @LastModifiedDate
     @Column(name = "lastupdatedate", nullable = false)
     private Date lastUpdateDate;
 
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="createdby", referencedColumnName = "id")
+    private User createdBy;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne()
-    @JoinColumn(name="users_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name="lastupdateby", referencedColumnName = "id")
     private User lastUpdateBy;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Profile() {
     }
 
+    public Profile(long id, boolean isDefault, String name, String description, Date creationDate, Date lastUpdateDate, User createdBy, User lastUpdateBy) {
+        this.id = id;
+        this.isDefault = isDefault;
+        this.name = name;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.lastUpdateDate = lastUpdateDate;
+        this.createdBy = createdBy;
+        this.lastUpdateBy = lastUpdateBy;
+    }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public boolean isDefault() {
         return isDefault;
@@ -63,7 +75,6 @@ public class Profile {
         isDefault = aDefault;
     }
 
-
     public String getName() {
         return name;
     }
@@ -71,7 +82,6 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getDescription() {
         return description;
@@ -81,8 +91,6 @@ public class Profile {
         this.description = description;
     }
 
-
-
     public Date getCreationDate() {
         return creationDate;
     }
@@ -90,16 +98,6 @@ public class Profile {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
-
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
-    }
-
 
     public Date getLastUpdateDate() {
         return lastUpdateDate;
@@ -109,6 +107,13 @@ public class Profile {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public User getLastUpdateBy() {
         return lastUpdateBy;
@@ -116,20 +121,5 @@ public class Profile {
 
     public void setLastUpdateBy(User lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", isDefault=" + isDefault +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", creationDate=" + creationDate +
-                ", createdBy=" + createdBy +
-                ", lastUpdateDate=" + lastUpdateDate +
-                ", lastUpdateBy=" + lastUpdateBy +
-                '}';
     }
 }
