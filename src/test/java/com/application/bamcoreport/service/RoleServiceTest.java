@@ -30,10 +30,9 @@ class RoleServiceTest {
 
     @Test
     void testGetRoles() {
-
         //Create data
 
-        Date date = new Date();
+        Date date  = new Date();
         Role role1 = new Role(1,"roleA","roleA","roleA",new User(),date,null);
         Role role2 = new Role(2,"roleB","roleB","roleB",new User(),date,null);
         Role role3 = new Role(3,"roleC","roleC","roleC",new User(),date,null);
@@ -71,7 +70,6 @@ class RoleServiceTest {
         Assertions.assertEquals(result.getId(), role.getId());
         // Verify call to mock
         verify(roleRepository, times(1)).findById(eq(role.getId()));
-
     }
 
     @Test
