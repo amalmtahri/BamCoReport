@@ -3,6 +3,7 @@ package com.application.bamcoreport.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
+@Schema
 public class User {
 
     @Id
@@ -97,6 +99,20 @@ public class User {
         this.creationdate = creationdate;
         this.lastupdate = lastupdate;
     }
+    public User( boolean enabled, String username, String password, String firstname, String lastname, String title, String jobtitle, User manageruserid, User createdby, Date creationdate, Date lastupdate) {
+        this.enabled = enabled;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.jobtitle = jobtitle;
+        this.manageruserid = manageruserid;
+        this.createdby = createdby;
+        this.creationdate = creationdate;
+        this.lastupdate = lastupdate;
+    }
+
 
     public long getId() {
         return id;

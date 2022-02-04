@@ -1,5 +1,6 @@
 package com.application.bamcoreport.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_memberships")
+@Schema
 public class UserMemberShip {
 
     @Id

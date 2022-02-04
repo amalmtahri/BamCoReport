@@ -1,5 +1,6 @@
 package com.application.bamcoreport.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "groups")
+@Schema
 public class Group {
 
     @Id

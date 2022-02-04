@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModel;
 import java.util.Date;
 
 
-@ApiModel("Role")
 public class RoleDto {
 
 

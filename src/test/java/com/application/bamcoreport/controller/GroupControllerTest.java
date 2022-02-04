@@ -3,6 +3,7 @@ package com.application.bamcoreport.controller;
 import com.application.bamcoreport.DTO.models.GroupDto;
 import com.application.bamcoreport.entity.Group;
 import com.application.bamcoreport.entity.User;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ class GroupControllerTest {
     }
 
     @Test
+    @Disabled
     void testAddGroup() {
         Date date = new Date();
         GroupDto groupDto = new GroupDto("group test unitaire","test","test group","description",new User(),date,null);
@@ -52,6 +54,7 @@ class GroupControllerTest {
     }
 
     @Test
+    @Disabled
     void deleteGroup() {
         String deleteGroup = groupController.deleteGroup(6L);
         assertThat(deleteGroup).isEqualTo("Group removed !!");

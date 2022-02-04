@@ -15,6 +15,10 @@ public class UserService implements IUserService{
     @Autowired
     private UserRepository repository;
 
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
+
     @Autowired
     IMapClassWithDto<User, UserDto> userMapping;
 
@@ -48,6 +52,7 @@ public class UserService implements IUserService{
         repository.deleteById(id);
         return "User removed !!";
     }
+
 
     public User updateUser(User user) {
         User existingUser = repository.findById(user.getId()).orElse(null);

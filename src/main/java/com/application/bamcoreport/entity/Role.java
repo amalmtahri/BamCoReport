@@ -1,6 +1,7 @@
 package com.application.bamcoreport.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity
 
 @Table(name = "roles")
+@Schema
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

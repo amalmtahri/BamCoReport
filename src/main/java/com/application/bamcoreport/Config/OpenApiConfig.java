@@ -13,7 +13,8 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("BamCo Application API").description(
-                        "Cette une API de gestion du banque"));
+                .info(new Info()
+                        .title("BamCo Application API")
+                        .description("Cette une API de gestion du banque"));
     }
 }

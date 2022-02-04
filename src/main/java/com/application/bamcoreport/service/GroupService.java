@@ -64,8 +64,6 @@ public class GroupService implements IGroupService {
             existingGroup.setDescription(group.getDescription());
             existingGroup.setCreatedby(getUserData);
             log.info("Update data of group {}",group.getName());
-
-
         }
         return repository.save(existingGroup);
     }
