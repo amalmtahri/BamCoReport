@@ -47,7 +47,7 @@ public class ProfileController implements ProfileApi {
     }
 
     @Override
-    public ProfileDto updateUser(@RequestBody ProfileDto profile){
+    public ProfileDto updateProfile(@RequestBody ProfileDto profile){
         return service.updateProfile(profile);
     }
 }

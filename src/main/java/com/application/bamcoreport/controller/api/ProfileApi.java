@@ -44,7 +44,7 @@ public interface ProfileApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = "profile updated"),
     })
-    ProfileDto updateUser(@RequestBody ProfileDto profile);
+    ProfileDto updateProfile(@RequestBody ProfileDto profile);
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Delete profile", description = "Delete profile with id", tags = { "profiles" })

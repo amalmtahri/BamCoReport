@@ -2,6 +2,7 @@ package com.application.bamcoreport.controller;
 
 
 import com.application.bamcoreport.DTO.models.UserContactInfoDto;
+import com.application.bamcoreport.controller.api.UserContactInfoApi;
 import com.application.bamcoreport.entity.ProfileMember;
 import com.application.bamcoreport.entity.UserContactInfo;
 import com.application.bamcoreport.service.UserContactInfoService;
@@ -13,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/userContactInfo")
-public class UserContactInfoController {
+public class UserContactInfoController implements UserContactInfoApi {
 
     @Autowired
     private UserContactInfoService service;
 
-    @PostMapping("/add")
+    @Override
     public UserContactInfoDto saveUserContactInfo(@RequestBody UserContactInfoDto userContactInfo){
         return service.saveUserContactInfo(userContactInfo);
     }
@@ -28,25 +29,28 @@ public class UserContactInfoController {
         return service.saveUserContactInfos(userContactInfos);
     }
 
-    @GetMapping("/find")
+    @Override
     public ResponseEntity<List<UserContactInfoDto>> getAllUserContactInfos(){
         List<UserContactInfoDto> userDto = service.getUserContactInfos();
         return ResponseEntity.ok(userDto);
     }
-    @GetMapping("/findBy/{id}")
-    public UserContactInfoDto findUserContactInfo(@PathVariable Long id){
+
+
+
+    @Override
+    public UserContactInfoDto findUserContactInfo(@PathVariable long id){
         return service.getUserContactInfoById(id);
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUserContactInfo(@PathVariable Long id){
+    @Override
+    public String deleteUserContactInfo(@PathVariable long id){
         return service.deleteUserContactInfo(id);
     }
 
 
-    @PutMapping("/update")
-    public UserContactInfoDto updateUser(@RequestBody UserContactInfoDto userContactInfo){
+    @Override
+    public UserContactInfoDto updateUserContactInfo(@RequestBody UserContactInfoDto userContactInfo){
         return service.updateUserContactInfo(userContactInfo);
     }
 

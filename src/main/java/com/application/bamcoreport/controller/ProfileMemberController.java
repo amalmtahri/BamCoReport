@@ -2,6 +2,7 @@ package com.application.bamcoreport.controller;
 
 
 import com.application.bamcoreport.DTO.models.ProfileMemberDto;
+import com.application.bamcoreport.controller.api.ProfileMemberApi;
 import com.application.bamcoreport.entity.Profile;
 import com.application.bamcoreport.entity.ProfileMember;
 import com.application.bamcoreport.service.ProfileMemberService;
@@ -13,39 +14,39 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/profileMember")
-public class ProfileMemberController {
+public class ProfileMemberController implements ProfileMemberApi {
 
     @Autowired
     private ProfileMemberService service;
 
-    @PostMapping("/add")
+    @Override
     public ProfileMemberDto saveProfileMember(@RequestBody ProfileMemberDto profileMember){
         return service.saveProfile(profileMember);
     }
 
-    @PostMapping("/addList")
+
     public List<ProfileMember> saveProfileMembers(@RequestBody List<ProfileMember> profileMembers){
         return service.saveProfiles(profileMembers);
     }
 
-    @GetMapping("/find")
+    @Override
     public ResponseEntity<List<ProfileMemberDto>> getAllProfileMembers(){
         List<ProfileMemberDto> profileMemberDto = service.getProfileMembers();
         return ResponseEntity.ok(profileMemberDto);
     }
-    @GetMapping("/findBy/{id}")
-    public ProfileMemberDto findProfileMember(@PathVariable Long id){
+    @Override
+    public ProfileMemberDto findProfileMember(@PathVariable long id){
         return service.getProfileMemberById(id);
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteProfileMember(@PathVariable Long id){
+    @Override
+    public String deleteProfileMember(@PathVariable long id){
         return service.deleteProfileMember(id);
     }
 
-    @PutMapping("/update")
-    public ProfileMemberDto updateUser(@RequestBody ProfileMemberDto profileMember){
+    @Override
+    public ProfileMemberDto updateProfileMember(@RequestBody ProfileMemberDto profileMember){
         return service.updateProfileMember(profileMember);
     }
 }
