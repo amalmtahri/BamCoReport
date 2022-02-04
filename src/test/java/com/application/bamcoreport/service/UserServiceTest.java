@@ -27,7 +27,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -92,6 +91,14 @@ class UserServiceTest {
         when(userRepository.save(eq(user1))).thenReturn(user1);
         //Assertions
         assertNotNull(userRepository.save(user1));
+    }
+
+    @Test
+    public void testDeleteUser(){
+        Date date = new Date();
+        User user1 = new User(true, "userA", "userA", "userA", "userA", "developpement", "developer web", new User(), new User(), date, null);
+        userRepository.deleteById(user1.getId());
+        assertThat(userService.deleteUser(user1.getId())).isEqualTo("User removed !!");
     }
 
 }
