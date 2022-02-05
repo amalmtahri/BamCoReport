@@ -33,8 +33,8 @@ class GroupServiceTest {
     void testGetGroups() {
         Date date = new Date();
         Group group1 = new Group(1,"group1","group1","group1","description",new User(),date,null);
-        Group group2 = new Group(1,"group2","group2","group2","description",new User(),date,null);
-        Group group3 = new Group(1,"group3","group3","group3","description",new User(),date,null);
+        Group group2 = new Group(2,"group2","group2","group2","description",new User(),date,null);
+        Group group3 = new Group(3,"group3","group3","group3","description",new User(),date,null);
         List<Group> groups = new ArrayList<>();
         groups.add(group1);
         groups.add(group2);
@@ -74,6 +74,5 @@ class GroupServiceTest {
         Group group1 = new Group(1,"group1","group1","group1","description",new User(),date,null);
         //groupRepository.deleteById(group1.getId());
         assertThat(groupService.deleteGroup(group1.getId())).isEqualTo("Group removed !!");
-
     }
 }
