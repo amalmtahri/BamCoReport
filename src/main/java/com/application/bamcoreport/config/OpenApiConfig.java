@@ -1,4 +1,4 @@
-package com.application.bamcoreport.config;
+package com.application.bamcoreport.Config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
