@@ -4,6 +4,7 @@ import com.application.bamcoreport.DTO.models.UserMemberShipDto;
 import com.application.bamcoreport.controller.api.UserMembershipApi;
 import com.application.bamcoreport.entity.UserMemberShip;
 import com.application.bamcoreport.service.UserMembershipService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/userMembership")
+@SecurityRequirement(name = "bearerAuth")
 public class UserMembershipController implements UserMembershipApi {
 
 

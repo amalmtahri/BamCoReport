@@ -5,6 +5,7 @@ import com.application.bamcoreport.controller.api.ProfileApi;
 import com.application.bamcoreport.entity.Profile;
 import com.application.bamcoreport.service.ProfileService;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @Api("/api/profile")
 @RestController
 @RequestMapping("/api/profile")
+@SecurityRequirement(name = "bearerAuth")
 public class ProfileController implements ProfileApi {
 
     @Autowired

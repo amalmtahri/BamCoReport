@@ -4,6 +4,7 @@ import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.controller.api.UserApi;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController implements UserApi {
 
     @Autowired
