@@ -8,12 +8,14 @@ import com.application.bamcoreport.entity.ProfileMember;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.entity.UserContactInfo;
 import com.application.bamcoreport.repository.UserContactInfoRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserContactInfoService {
 
     @Autowired

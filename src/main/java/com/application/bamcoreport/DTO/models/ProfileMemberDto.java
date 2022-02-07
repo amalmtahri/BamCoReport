@@ -16,8 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class ProfileMemberDto {
     private long id;
-
-
     private Profile profileId;
     private User userId;
     private Group groupeId;

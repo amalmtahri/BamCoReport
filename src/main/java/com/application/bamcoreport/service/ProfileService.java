@@ -6,6 +6,8 @@ import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Profile;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.repository.ProfileRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 
 @Service
+@AllArgsConstructor
+@Slf4j
 public class ProfileService {
 
     @Autowired
@@ -40,7 +44,8 @@ public class ProfileService {
 
     public List<ProfileDto> getProfiles() {
         List<Profile> profiles = repository.findAll();
-        return profileMapping.convertListToListDto(profiles,ProfileDto.class);
+        List<ProfileDto> profileDtos=profileMapping.convertListToListDto(profiles,ProfileDto.class);
+        return profileDtos;
     }
 
     public ProfileDto getProfileById(Long id){

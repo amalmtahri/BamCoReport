@@ -9,12 +9,14 @@ import com.application.bamcoreport.entity.Role;
 import com.application.bamcoreport.entity.User;
 import com.application.bamcoreport.repository.ProfileMemberRepository;
 import com.application.bamcoreport.repository.ProfileMemberRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProfileMemberService {
     @Autowired
     private ProfileMemberRepository repository;
