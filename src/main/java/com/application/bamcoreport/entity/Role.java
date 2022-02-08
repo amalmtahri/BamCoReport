@@ -7,7 +7,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 
@@ -39,6 +41,8 @@ public class Role {
     @Column(name = "updatedat")
     private Date lastupdate;
 
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    List<User> users=new ArrayList<>();
 
     public Role() {
     }

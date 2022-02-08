@@ -9,7 +9,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -71,6 +74,11 @@ public class User {
     @LastModifiedDate
     @Column(name = "updatedat")
     private Date lastupdate;
+
+
+    @ManyToMany
+    @JoinTable(name = "user_memberships", joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
 
 
