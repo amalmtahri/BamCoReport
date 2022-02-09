@@ -42,4 +42,29 @@ public class RejetService implements IRejetService{
         RejetDto rejetResponse = rejetMapping.convertToDto(rejet, RejetDto.class);
         return rejetResponse;
     }
+
+    public RejetDto getRejetById(Long id){
+        Rejet getOne = repository.findById(id).orElse(null);
+        RejetDto response = rejetMapping.convertToDto(getOne,RejetDto.class);
+        return response;
+    }
+
+    public String deleteRejet(Long id){
+        repository.deleteById(id);
+        return "Rejet removed !!";
+    }
+
+    public RejetDto updateRejet(RejetDto rejetDto){
+        Rejet rejet = rejetMapping.convertToEntity(rejetDto,Rejet.class);
+        Rejet existingRejet = repository.findById(rejet.getId()).orElse(null);
+        if(existingRejet!=null){
+            User user = userService.getUserById(rejet.getTakenBy().getId());
+            rejet.setTakenBy(user);
+            Rejet rejet1 =  repository.save(rejet);
+            return rejetMapping.convertToDto(rejet1, RejetDto.class);
+        }
+        return rejetMapping.convertToDto(rejet, RejetDto.class);
+}
+
+
 }
