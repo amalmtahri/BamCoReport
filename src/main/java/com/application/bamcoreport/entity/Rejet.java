@@ -77,7 +77,7 @@ public class Rejet {
     private String file;
 
     @ManyToOne()
-    @Column(name = "takenby", nullable = false)
+    @JoinColumn(name = "takenby")
     private User takenBy;
 
 
