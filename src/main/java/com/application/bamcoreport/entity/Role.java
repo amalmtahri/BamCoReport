@@ -1,5 +1,6 @@
 package com.application.bamcoreport.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,12 +9,14 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 
 @Table(name = "roles")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","createdby"})
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +44,10 @@ public class Role {
     @Column(name = "updatedat")
     private Date lastupdate;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    List<User> users=new ArrayList<>();
+
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    @JsonBackReference
+//    private Collection<User> users;
 
     public Role() {
     }

@@ -1,6 +1,8 @@
 package com.application.bamcoreport.DTO.models;
 
 import com.application.bamcoreport.entity.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModel;
 
 import java.util.Date;
@@ -14,6 +16,8 @@ public class RoleDto {
     private String name;
     private String displayname;
     private String description;
+
+    @JsonManagedReference
     private User createdby;
     private Date creationdate;
     private Date lastupdate;

@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 
@@ -23,10 +24,13 @@ public class UserDto {
     private String lastname;
     private String title;
     private String jobtitle;
+    @JsonBackReference
     private User manageruserid;
+    @JsonBackReference
     private User createdby;
     private Date creationdate;
     private Date lastupdate;
+
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     Collection<Role> roles;
