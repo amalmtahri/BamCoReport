@@ -1,11 +1,13 @@
 package com.application.bamcoreport.security;
 
+import com.application.bamcoreport.enumeration.RoleEnum;
 import com.application.bamcoreport.filter.CustomAuthenticationFilter;
 import com.application.bamcoreport.filter.CustomAuthorisationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,7 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin();
         http.authorizeRequests().antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/api/**").authenticated();
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/api/user/**").hasAnyAuthority(RoleEnum.admin.toString(),RoleEnum.super_admin.toString())
+                .antMatchers(HttpMethod.POST,"/api/profile/**").hasAnyAuthority(RoleEnum.admin.toString(),RoleEnum.super_admin.toString())
+                .antMatchers("/api/**").authenticated();
         //change it after add roles
         //http.authorizeRequests().antMatchers("GET","/api/user/**").hasAnyAuthority("ROLE_USER");
         //http.authorizeRequests().antMatchers("GET","/api/user/**").hasAnyAuthority("ROLE_ADMIN");

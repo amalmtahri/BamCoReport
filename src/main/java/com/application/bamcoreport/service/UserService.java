@@ -98,6 +98,10 @@ public class UserService implements  IUserService, UserDetailsService {
         User user =this.findUserByUserName(username);
         Collection<SimpleGrantedAuthority> authorities=new ArrayList<>();
         //add user roles
+        if(user.getRoles().size()>0)
+        user.getRoles().forEach(role ->{
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        } );
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
     }
 }
