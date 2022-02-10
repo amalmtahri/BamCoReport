@@ -24,9 +24,9 @@ public class UserDto {
     private String lastname;
     private String title;
     private String jobtitle;
-    @JsonBackReference
+
     private User manageruserid;
-    @JsonBackReference
+
     private User createdby;
     private Date creationdate;
     private Date lastupdate;

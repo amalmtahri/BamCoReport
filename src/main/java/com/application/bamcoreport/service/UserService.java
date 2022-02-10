@@ -1,5 +1,7 @@
 package com.application.bamcoreport.service;
 
+import com.application.bamcoreport.DTO.models.ChangePasswordDto;
+import com.application.bamcoreport.DTO.models.JsonResponse;
 import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.User;
@@ -103,5 +105,18 @@ public class UserService implements  IUserService, UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         } );
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
+    }
+
+    public JsonResponse<UserDto> changePassword(ChangePasswordDto user){
+        User foundUser =this.findUserByUserName(user.getUsername());
+        if(foundUser != null){
+            if(passwordEncoder.matches(user.getOldPassword(), foundUser.getPassword())){
+                foundUser.setPassword(passwordEncoder.encode(user.getNewPassword()));
+                foundUser= repository.save(foundUser);
+                UserDto userResponse = userMapping.convertToDto(foundUser, UserDto.class);
+                return new JsonResponse<> ("password changed successfully",userResponse);
+            }
+        }
+        return new JsonResponse<> ("username or password incorrect");
     }
 }
