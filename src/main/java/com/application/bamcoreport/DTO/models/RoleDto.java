@@ -17,7 +17,7 @@ public class RoleDto {
     private String displayname;
     private String description;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     private User createdby;
     private Date creationdate;
     private Date lastupdate;
