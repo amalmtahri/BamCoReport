@@ -1,5 +1,8 @@
 package com.application.bamcoreport.service;
 
+import com.application.bamcoreport.DTO.interfaces.RejectsByDate;
+import com.application.bamcoreport.DTO.interfaces.RejectsByType;
+import com.application.bamcoreport.DTO.models.RejectCountbyUser;
 import com.application.bamcoreport.DTO.models.RejetDto;
 import com.application.bamcoreport.DTO.services.IMapClassWithDto;
 import com.application.bamcoreport.entity.Rejet;
@@ -64,7 +67,21 @@ public class RejetService implements IRejetService{
             return rejetMapping.convertToDto(rejet1, RejetDto.class);
         }
         return rejetMapping.convertToDto(rejet, RejetDto.class);
+    }
+
+    public List<RejectCountbyUser> getRejetctCountByUser(){
+        return repository.countTotalRejectsByUser();
+    }
+
+    public long rejectsCount(){
+        return repository.count();
+    }
+
+    public List<RejectsByType> getRejetctCountByType(){
+        return repository.countTotalRejectsByTypeAndDate();
+    }
+    public List<RejectsByDate> getRejetctCountByDate(){
+        return repository.countTotalRejectsByDate();
+    }
 }
 
-
-}
