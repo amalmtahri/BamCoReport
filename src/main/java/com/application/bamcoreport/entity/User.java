@@ -53,7 +53,7 @@ public class User {
     private String jobtitle;
 
     //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonBackReference
+   // @JsonBackReference
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne()
     @JoinColumn(name = "manageruserid")
