@@ -1,4 +1,4 @@
-package com.application.bamcoreport.Config;
+package com.application.bamcoreport.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -13,8 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info()
-                        .title("BamCo Application API")
-                        .description("Cette une API de gestion du banque"));
+                .info(new Info().title("BamCo Application API").description(
+                        "Cette une API de gestion du banque"));
     }
 }

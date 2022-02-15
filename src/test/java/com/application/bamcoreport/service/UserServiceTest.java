@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -41,10 +42,14 @@ class UserServiceTest {
     @Autowired
     IMapClassWithDto<User, UserDto> userMapping;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @BeforeEach
     @Disabled
     public void setup() {
-        userService = new UserService(userRepository);
+        userService = new UserService(passwordEncoder);
+        //(userRepository,passwordEncoder);
     }
 
     @Test

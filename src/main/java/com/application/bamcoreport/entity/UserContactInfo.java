@@ -3,6 +3,7 @@ package com.application.bamcoreport.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class UserContactInfo implements Serializable {
 
 
     @JsonIgnore
-    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "userid", referencedColumnName = "id")
     private User userId;
 

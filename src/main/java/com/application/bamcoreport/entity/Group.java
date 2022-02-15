@@ -1,6 +1,7 @@
 package com.application.bamcoreport.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -28,9 +29,15 @@ public class Group {
     @Column(name = "description", nullable = false)
     private String description;
 
+
     @ManyToOne()
     @JoinColumn(name="createdby")
     private User createdby;
+
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "createdby")
+    //private User createdBy;
 
     @CreatedDate
     @Column(name = "createdat", nullable = false, updatable = false)

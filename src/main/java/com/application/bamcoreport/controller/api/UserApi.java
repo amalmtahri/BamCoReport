@@ -1,5 +1,7 @@
 package com.application.bamcoreport.controller.api;
 
+import com.application.bamcoreport.DTO.models.ChangePasswordDto;
+import com.application.bamcoreport.DTO.models.JsonResponse;
 import com.application.bamcoreport.DTO.models.UserDto;
 import com.application.bamcoreport.entity.User;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,4 +54,12 @@ public interface UserApi {
             @ApiResponse(responseCode  = "200", description = "User deleted"),
     })
     String deleteUser(@PathVariable Long id);
+
+    @PostMapping(value="/changePassword",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "change user password", description = "This method for change user password", tags = { "users" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = "Success Response"),
+            @ApiResponse(responseCode  = "400", description = "username or password invalid")
+    })
+    JsonResponse<UserDto> ChangeUserPassword(@RequestBody ChangePasswordDto userDto);
 }
