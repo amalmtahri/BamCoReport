@@ -1,4 +1,4 @@
-package com.application.bamcoreport.config;
+package com.application.bamcoreport.Config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -23,5 +23,6 @@ public class OpenApiConfig {
                                         .bearerFormat("JWT")))
                 .info(new Info().title("BamCoRepport Application API").description(
                         "This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."));
+
     }
 }

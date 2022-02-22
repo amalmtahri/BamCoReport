@@ -38,6 +38,7 @@ public class UserService implements  IUserService, UserDetailsService {
     }
 
     public UserDto saveUser(UserDto userdto){
+
         // convert DTO to entity
         User userRequest = userMapping.convertToEntity(userdto,User.class);
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
@@ -50,6 +51,7 @@ public class UserService implements  IUserService, UserDetailsService {
         // convert entity to DTO
         UserDto userResponse = userMapping.convertToDto(user, UserDto.class);
         return userResponse;
+
     }
 
 
@@ -98,7 +100,7 @@ public class UserService implements  IUserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user =this.findUserByUserName(username);
-        Collection<SimpleGrantedAuthority> authorities=new ArrayList<>();
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         //add user roles
         if(user.getRoles().size()>0)
         user.getRoles().forEach(role ->{
